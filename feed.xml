@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Karun Kalaivanan Vinayagam</title>
   <subtitle>Super-fast Jekyll framework</subtitle>
-  <updated>2019-02-26T13:45:41-08:00</updated>
+  <updated>2019-04-11T13:43:30-07:00</updated>
   <id>http://0.0.0.0:4321/</id>
   <generator uri="https://sparanoid.com/lab/amsf/" version="2.0.12">Almace Scaffolding</generator>
 
@@ -9,171 +9,11 @@
   <link rel="self" type="application/atom+xml" href="http://0.0.0.0:4321/feed.xml" />
 
   <author>
-    <name>Tunghsiao Liu</name>
+    <name>Karun Kalaivanan Vinayagam</name>
     <uri>http://0.0.0.0:4321/</uri>
-    <email>t@sparanoid.com</email>
+    <email>mail@vkarun.me</email>
   </author>
 
-  
-    
-      
-
-      
-
-      <entry>
-        <title>Open Graph</title>
-        <id>http://0.0.0.0:4321/open-graph.html</id>
-        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/open-graph.html" />
-        <published>2017-01-06T00:00:00-08:00</published>
-
-        
-          <updated>2018-08-10T07:04:53-07:00</updated>
-        
-
-        <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
-        </author>
-
-        <content type="html" xml:base="http://0.0.0.0:4321/">
-          
-            &lt;p&gt;Theme Curtana has full &lt;a href=&quot;http://ogp.me/&quot;&gt;Open Graph&lt;/a&gt; and &lt;a href=&quot;https://dev.twitter.com/docs/cards&quot;&gt;Twitter Cards&lt;/a&gt; support.&lt;/p&gt;
-
-&lt;p&gt;It will look for the image in the following order:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Use &lt;code class=&quot;highlighter-rouge&quot;&gt;page.thumbnail&lt;/code&gt; if defined in your post &lt;a href=&quot;https://jekyllrb.com/docs/frontmatter/&quot;&gt;front-matter field&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;If no specified &lt;code class=&quot;highlighter-rouge&quot;&gt;page.thumbnail&lt;/code&gt; defined, it uses &lt;a href=&quot;/custom-heading-background.html&quot;&gt;Heading Background Image&lt;/a&gt; (aka. &lt;code class=&quot;highlighter-rouge&quot;&gt;page.heading-bg&lt;/code&gt;) if defined in your post front-matter field.&lt;/li&gt;
-  &lt;li&gt;If no heading background image found, Curtana will try to grab the first image (wrapped inside &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt;) in your post as your post thumbnail&lt;/li&gt;
-  &lt;li&gt;If nothing found, it fails back to &lt;code class=&quot;highlighter-rouge&quot;&gt;logo.png&lt;/code&gt; located at your site root.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;You can always use &lt;code class=&quot;highlighter-rouge&quot;&gt;page.thumb_force_logo&lt;/code&gt; in your post front-matter field to override the above lookup.&lt;/p&gt;
-
-&lt;p&gt;Here’s a preview on Twitter:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;//sparanoid.s3-website-us-east-1.amazonaws.com/open-graph-preview.png&quot; alt=&quot;Twitter Cards (Open Graph compatible) Preview&quot; /&gt;&lt;/p&gt;
-
-          
-          
-        
-      
-        </content>
-
-        
-          <summary>Theme Curtana has full Open Graph and Twitter Cards support.</summary>
-        
-      </entry>
-    
-  
-    
-      
-
-      
-
-      <entry>
-        <title>Introducing Curtana</title>
-        <id>http://0.0.0.0:4321/theme-curtana.html</id>
-        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/theme-curtana.html" />
-        <published>2016-06-01T00:00:00-07:00</published>
-
-        
-          <updated>2018-08-30T08:26:52-07:00</updated>
-        
-
-        <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
-        </author>
-
-        <content type="html" xml:base="http://0.0.0.0:4321/">
-          
-            &lt;p&gt;Curtana is the default theme of &lt;a href=&quot;https://sparanoid.com/lab/amsf/&quot;&gt;AMSF&lt;/a&gt; (Almace Scaffolding).&lt;/p&gt;
-
-&lt;h3 id=&quot;features&quot;&gt;Features&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;A variant of &lt;a href=&quot;https://sparanoid.com/&quot;&gt;sparanoid.com&lt;/a&gt;, looking great on any modern browsers&lt;/li&gt;
-  &lt;li&gt;Minimalism design, No jQuery, no &lt;code class=&quot;highlighter-rouge&quot;&gt;everybody-shake-ur-body.js&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Ideal for personal blog, portfolio, product blog and Tumblr-like link blog&lt;/li&gt;
-  &lt;li&gt;(Maybe) &lt;a href=&quot;https://github.com/sparanoid/sparanoid.com/commit/9b44b4c0f57c3dd1e828d828a95cc21b992785ce&quot;&gt;the first&lt;/a&gt; template that uses &lt;a href=&quot;https://www.w3.org/TR/css3-values/#viewport-relative-lengths&quot;&gt;viewport relative units&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Handcrafted stylesheets. No Bootstrap or other bloated frameworks are used, unminified CSS &amp;lt; 12 KB&lt;/li&gt;
-  &lt;li&gt;Predefined CSS and Sass (SCSS) variables make it easier to change color schemes for posts&lt;/li&gt;
-  &lt;li&gt;Dynamic color scheme for code highlighters powered by &lt;a href=&quot;https://sparanoid.com/lab/randomized/&quot;&gt;Randomized&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://ogp.me/&quot;&gt;Open Graph&lt;/a&gt; and &lt;a href=&quot;https://dev.twitter.com/docs/cards&quot;&gt;Twitter Cards&lt;/a&gt; support&lt;/li&gt;
-  &lt;li&gt;No Internet Explorer support&lt;/li&gt;
-&lt;/ul&gt;
-
-          
-          
-        
-      
-        </content>
-
-        
-          <summary>Curtana is the default theme of AMSF (Almace Scaffolding).</summary>
-        
-      </entry>
-    
-  
-    
-      
-
-      
-
-      <entry>
-        <title>Deployment Methods</title>
-        <id>http://0.0.0.0:4321/deployment-methods.html</id>
-        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/deployment-methods.html" />
-        <published>2016-03-18T00:00:00-07:00</published>
-
-        
-          <updated>2017-01-10T05:28:58-08:00</updated>
-        
-
-        <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
-        </author>
-
-        <content type="html" xml:base="http://0.0.0.0:4321/">
-          
-            &lt;p&gt;Sites generated using Almace Scaffolding can be deployed in nearly any web hosting services. A few of the most common deployment techniques are described below. More deployment methods please refer to &lt;a href=&quot;https://jekyllrb.com/docs/deployment-methods/&quot;&gt;Jekyll - Deployment methods&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;web-hosting-providers-ftpsftp&quot;&gt;Web Hosting Providers (FTP/SFTP)&lt;/h2&gt;
-
-&lt;p&gt;Just about any traditional web hosting provider will let you upload files to their servers over FTP. You can simply run the &lt;code class=&quot;highlighter-rouge&quot;&gt;grunt build&lt;/code&gt; command and upload all files generated under &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; to the HTTP root folder of your hosting account.&lt;/p&gt;
-
-&lt;h2 id=&quot;rsync&quot;&gt;rsync&lt;/h2&gt;
-
-&lt;p&gt;There’s a &lt;code class=&quot;highlighter-rouge&quot;&gt;_deploy.yml&lt;/code&gt; at the root of your AMSF project containing a basic &lt;code class=&quot;highlighter-rouge&quot;&gt;rsync&lt;/code&gt; configurations. Change these configurations to yours and then run:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt deploy:rsync
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can deploy it for specific environment, the following command will deploy your site to &lt;code class=&quot;highlighter-rouge&quot;&gt;beta&lt;/code&gt; environment via &lt;code class=&quot;highlighter-rouge&quot;&gt;rsync&lt;/code&gt; method you defined in &lt;code class=&quot;highlighter-rouge&quot;&gt;_deploy.yml&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt deploy:rsync &lt;span class=&quot;nt&quot;&gt;--env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;beta
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;amazon-s3-s3_website&quot;&gt;Amazon S3 (s3_website)&lt;/h2&gt;
-
-&lt;p&gt;You can also deploy your site to Amazon S3 via &lt;a href=&quot;https://github.com/laurilehmijoki/s3_website&quot;&gt;s3_website&lt;/a&gt;, see &lt;code class=&quot;highlighter-rouge&quot;&gt;s3_website.example.yml&lt;/code&gt; for more info.&lt;/p&gt;
-
-          
-          
-        
-      
-        </content>
-
-        
-          <summary>Sites generated using Almace Scaffolding can be deployed in nearly any web hosting services. A few of the most common deployment techniques are described below. More deployment methods please refer to Jekyll - Deployment methods.</summary>
-        
-      </entry>
-    
   
     
       
@@ -184,16 +24,16 @@
         <title>Welcome</title>
         <id>http://0.0.0.0:4321/welcome.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/welcome.html" />
-        <published>2014-06-13T00:00:00-07:00</published>
+        <published>2019-12-04T00:00:00-08:00</published>
 
         
-          <updated>2018-10-16T07:32:54-07:00</updated>
+          <updated>2019-04-11T13:09:13-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -245,19 +85,209 @@
       
 
       <entry>
-        <title>Getting Started</title>
+        <title>AsyncTask</title>
+        <id>http://0.0.0.0:4321/asynctask.html</id>
+        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/asynctask.html" />
+        <published>2019-04-12T00:00:00-07:00</published>
+
+        
+          <updated>2019-04-11T13:19:57-07:00</updated>
+        
+
+        <author>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
+        </author>
+
+        <content type="html" xml:base="http://0.0.0.0:4321/">
+          
+            &lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
+
+&lt;p&gt;In short answer: yes, but additional actions required.&lt;/p&gt;
+
+&lt;p&gt;tl;dr: You can serve AMSF as a static site on GitHub Pages, but not a Jekyll site using Jekyll renderer provided by GitHub Pages.&lt;/p&gt;
+
+&lt;p&gt;There’re some factors that prevent it from generating pages using GitHub Pages renderer:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Many features Almace Scaffolding provides like LiveReload, Sass support, inline SVG, and HTML minification are implemented using &lt;a href=&quot;https://gruntjs.com/&quot;&gt;Grunt.js&lt;/a&gt;, it’s not supported by GitHub Pages.&lt;/li&gt;
+  &lt;li&gt;Almace Scaffolding uses the latest pre-release Jekyll, so not all features are supported by GitHub Pages renderers.&lt;/li&gt;
+  &lt;li&gt;GItHub Pages build server &lt;a href=&quot;https://help.github.com/articles/pages-don-t-build-unable-to-run-jekyll#source-setting&quot;&gt;overwrites the &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt; settings&lt;/a&gt;. This prevent it generating pages from current file structure.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;the-solution-for-users-or-organization-sites&quot;&gt;The Solution for Users or Organization Sites&lt;/h2&gt;
+
+&lt;p&gt;Since GitHub Pages for users or organization sites can only be served from the root directoy of your master branch. You have to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Make sure your &lt;code class=&quot;highlighter-rouge&quot;&gt;baseurl&lt;/code&gt; is set to &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&quot;&lt;/code&gt; (empty) in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Build your site locally (&lt;code class=&quot;highlighter-rouge&quot;&gt;grunt build&lt;/code&gt;).&lt;/li&gt;
+  &lt;li&gt;Use your own method, create a script, bash, whatever it works to move the generated pages to the root directory of your repository.&lt;/li&gt;
+  &lt;li&gt;Upload Jekyll generated static files to your &lt;code class=&quot;highlighter-rouge&quot;&gt;username.github.io&lt;/code&gt; repository.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you’d like to keep all things under Git control, you can try the following file structure:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── _amsf/ (Almace Scaffolding source code)
+├── *.html (Jekyll-generated static pages)
+└── README.md (your own readme)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can see this &lt;a href=&quot;https://github.com/amsf/amsf.github.io/&quot;&gt;live demo&lt;/a&gt; how it actually works.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-solution-for-project-sites&quot;&gt;The Solution for Project Sites&lt;/h2&gt;
+
+&lt;p&gt;Things can be simpler if you need AMSF for your project sites since GitHub Pages supports serve your site from a subdirectory:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Make the following changes in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;:
+    &lt;ul&gt;
+      &lt;li&gt;Change &lt;code class=&quot;highlighter-rouge&quot;&gt;destination&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;docs&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Change &lt;code class=&quot;highlighter-rouge&quot;&gt;baseurl&lt;/code&gt; to the name of your repository slug, ie. &lt;code class=&quot;highlighter-rouge&quot;&gt;/my-project&lt;/code&gt;.&lt;/li&gt;
+      &lt;li&gt;Change &lt;code class=&quot;highlighter-rouge&quot;&gt;flatten_base&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Build your site locally (&lt;code class=&quot;highlighter-rouge&quot;&gt;grunt build&lt;/code&gt;).&lt;/li&gt;
+  &lt;li&gt;Push changes to GitHub&lt;/li&gt;
+&lt;/ul&gt;
+
+          
+          
+        
+      
+        </content>
+
+        
+          <summary>The Problem</summary>
+        
+      </entry>
+    
+  
+    
+      
+
+      
+
+      <entry>
+        <title>Open Graph</title>
+        <id>http://0.0.0.0:4321/open-graph.html</id>
+        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/open-graph.html" />
+        <published>2017-01-06T00:00:00-08:00</published>
+
+        
+          <updated>2019-04-09T12:23:53-07:00</updated>
+        
+
+        <author>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
+        </author>
+
+        <content type="html" xml:base="http://0.0.0.0:4321/">
+          
+            &lt;p&gt;Theme Curtana has full &lt;a href=&quot;http://ogp.me/&quot;&gt;Open Graph&lt;/a&gt; and &lt;a href=&quot;https://dev.twitter.com/docs/cards&quot;&gt;Twitter Cards&lt;/a&gt; support.&lt;/p&gt;
+
+&lt;p&gt;It will look for the image in the following order:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Use &lt;code class=&quot;highlighter-rouge&quot;&gt;page.thumbnail&lt;/code&gt; if defined in your post &lt;a href=&quot;https://jekyllrb.com/docs/frontmatter/&quot;&gt;front-matter field&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;If no specified &lt;code class=&quot;highlighter-rouge&quot;&gt;page.thumbnail&lt;/code&gt; defined, it uses &lt;a href=&quot;/custom-heading-background.html&quot;&gt;Heading Background Image&lt;/a&gt; (aka. &lt;code class=&quot;highlighter-rouge&quot;&gt;page.heading-bg&lt;/code&gt;) if defined in your post front-matter field.&lt;/li&gt;
+  &lt;li&gt;If no heading background image found, Curtana will try to grab the first image (wrapped inside &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt;) in your post as your post thumbnail&lt;/li&gt;
+  &lt;li&gt;If nothing found, it fails back to &lt;code class=&quot;highlighter-rouge&quot;&gt;logo.png&lt;/code&gt; located at your site root.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;You can always use &lt;code class=&quot;highlighter-rouge&quot;&gt;page.thumb_force_logo&lt;/code&gt; in your post front-matter field to override the above lookup.&lt;/p&gt;
+
+&lt;p&gt;Here’s a preview on Twitter:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;//sparanoid.s3-website-us-east-1.amazonaws.com/open-graph-preview.png&quot; alt=&quot;Twitter Cards (Open Graph compatible) Preview&quot; /&gt;&lt;/p&gt;
+
+          
+          
+        
+      
+        </content>
+
+        
+          <summary>Theme Curtana has full Open Graph and Twitter Cards support.</summary>
+        
+      </entry>
+    
+  
+    
+      
+
+      
+
+      <entry>
+        <title>Introducing Curtana</title>
+        <id>http://0.0.0.0:4321/theme-curtana.html</id>
+        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/theme-curtana.html" />
+        <published>2016-06-01T00:00:00-07:00</published>
+
+        
+          <updated>2019-04-09T12:23:53-07:00</updated>
+        
+
+        <author>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
+        </author>
+
+        <content type="html" xml:base="http://0.0.0.0:4321/">
+          
+            &lt;p&gt;Curtana is the default theme of &lt;a href=&quot;https://sparanoid.com/lab/amsf/&quot;&gt;AMSF&lt;/a&gt; (Almace Scaffolding).&lt;/p&gt;
+
+&lt;h3 id=&quot;features&quot;&gt;Features&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A variant of &lt;a href=&quot;https://sparanoid.com/&quot;&gt;sparanoid.com&lt;/a&gt;, looking great on any modern browsers&lt;/li&gt;
+  &lt;li&gt;Minimalism design, No jQuery, no &lt;code class=&quot;highlighter-rouge&quot;&gt;everybody-shake-ur-body.js&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Ideal for personal blog, portfolio, product blog and Tumblr-like link blog&lt;/li&gt;
+  &lt;li&gt;(Maybe) &lt;a href=&quot;https://github.com/sparanoid/sparanoid.com/commit/9b44b4c0f57c3dd1e828d828a95cc21b992785ce&quot;&gt;the first&lt;/a&gt; template that uses &lt;a href=&quot;https://www.w3.org/TR/css3-values/#viewport-relative-lengths&quot;&gt;viewport relative units&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Handcrafted stylesheets. No Bootstrap or other bloated frameworks are used, unminified CSS &amp;lt; 12 KB&lt;/li&gt;
+  &lt;li&gt;Predefined CSS and Sass (SCSS) variables make it easier to change color schemes for posts&lt;/li&gt;
+  &lt;li&gt;Dynamic color scheme for code highlighters powered by &lt;a href=&quot;https://sparanoid.com/lab/randomized/&quot;&gt;Randomized&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://ogp.me/&quot;&gt;Open Graph&lt;/a&gt; and &lt;a href=&quot;https://dev.twitter.com/docs/cards&quot;&gt;Twitter Cards&lt;/a&gt; support&lt;/li&gt;
+  &lt;li&gt;No Internet Explorer support&lt;/li&gt;
+&lt;/ul&gt;
+
+          
+          
+        
+      
+        </content>
+
+        
+          <summary>Curtana is the default theme of AMSF (Almace Scaffolding).</summary>
+        
+      </entry>
+    
+  
+    
+  
+    
+      
+
+      
+
+      <entry>
+        <title>KARRUN</title>
         <id>http://0.0.0.0:4321/getting-started.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/getting-started.html" />
         <published>2014-06-12T00:00:00-07:00</published>
 
         
-          <updated>2018-12-09T19:54:16-08:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -350,13 +380,13 @@
         <published>2014-06-11T00:00:00-07:00</published>
 
         
-          <updated>2019-02-18T22:51:32-08:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -399,13 +429,13 @@
         <published>2014-06-11T00:00:00-07:00</published>
 
         
-          <updated>2018-08-10T07:04:53-07:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -453,13 +483,13 @@
         <published>2014-06-10T00:00:00-07:00</published>
 
         
-          <updated>2017-01-08T04:42:26-08:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -541,13 +571,13 @@
         <published>2014-06-09T00:00:00-07:00</published>
 
         
-          <updated>2018-10-16T07:32:54-07:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -898,13 +928,13 @@ Reading time: 3 hrs 20 mins
         <published>2014-06-06T00:00:00-07:00</published>
 
         
-          <updated>2018-10-15T10:28:58-07:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -1228,13 +1258,13 @@ and &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&
         <published>2014-06-06T00:00:00-07:00</published>
 
         
-          <updated>2018-08-10T07:04:53-07:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -1391,13 +1421,13 @@ end
         <published>2014-06-05T00:00:00-07:00</published>
 
         
-          <updated>2018-08-23T23:51:53-07:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -1664,13 +1694,13 @@ Careful Skippy, you really aren’t as convincing as you think you are.&lt;/p&gt
         <published>2014-06-01T00:00:00-07:00</published>
 
         
-          <updated>2018-11-08T20:30:12-08:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -1827,13 +1857,13 @@ Love this plugin? please consider &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
         <published>2014-05-01T00:00:00-07:00</published>
 
         
-          <updated>2018-08-10T07:04:53-07:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -1879,13 +1909,13 @@ scheme-hero-bg: &quot;#0029ff&quot;
         <published>2014-04-01T00:00:00-07:00</published>
 
         
-          <updated>2018-08-10T07:04:53-07:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -1930,13 +1960,13 @@ css: |
         <published>2014-02-01T00:00:00-08:00</published>
 
         
-          <updated>2018-08-10T07:04:53-07:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -1972,13 +2002,13 @@ css: |
         <published>2014-02-01T00:00:00-08:00</published>
 
         
-          <updated>2018-08-10T07:04:53-07:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -2036,13 +2066,13 @@ css: |
         <published>2014-02-01T00:00:00-08:00</published>
 
         
-          <updated>2018-08-10T07:04:53-07:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
@@ -2104,13 +2134,13 @@ css: |
         <published>2014-01-01T00:00:00-08:00</published>
 
         
-          <updated>2019-02-05T22:47:07-08:00</updated>
+          <updated>2019-04-09T12:23:53-07:00</updated>
         
 
         <author>
-          <name>Tunghsiao Liu</name>
-          <uri>https://sparanoid.com/</uri>
-          <email>t@sparanoid.com</email>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
         </author>
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
