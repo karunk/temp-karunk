@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Karun Kalaivanan Vinayagam</title>
   <subtitle>Super-fast Jekyll framework</subtitle>
-  <updated>2019-04-11T13:43:30-07:00</updated>
+  <updated>2019-04-11T15:02:29-07:00</updated>
   <id>http://0.0.0.0:4321/</id>
   <generator uri="https://sparanoid.com/lab/amsf/" version="2.0.12">Almace Scaffolding</generator>
 
@@ -27,7 +27,7 @@
         <published>2019-12-04T00:00:00-08:00</published>
 
         
-          <updated>2019-04-11T13:09:13-07:00</updated>
+          <updated>2019-04-11T14:55:02-07:00</updated>
         
 
         <author>
@@ -91,7 +91,7 @@
         <published>2019-04-12T00:00:00-07:00</published>
 
         
-          <updated>2019-04-11T13:19:57-07:00</updated>
+          <updated>2019-04-11T14:55:02-07:00</updated>
         
 
         <author>
@@ -102,7 +102,10 @@
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
           
-            &lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
+            &lt;!-- Place this tag in your head or just before your close body tag. --&gt;
+&lt;script async=&quot;&quot; defer=&quot;&quot; src=&quot;https://buttons.github.io/buttons.js&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
 
 &lt;p&gt;In short answer: yes, but additional actions required.&lt;/p&gt;
 
@@ -281,7 +284,7 @@
         <published>2014-06-12T00:00:00-07:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2019-04-11T14:55:02-07:00</updated>
         
 
         <author>
@@ -928,7 +931,7 @@ Reading time: 3 hrs 20 mins
         <published>2014-06-06T00:00:00-07:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2019-04-11T14:55:02-07:00</updated>
         
 
         <author>
