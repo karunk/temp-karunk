@@ -1,38 +1,228 @@
----
----
-
-<?xml version="1.0" encoding="utf-8"?>
-
-{%- include amsf/core -%}
-
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version="1.0" encoding="utf-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>{{ "/" | absolute_url }}</loc>
-    <lastmod>{{ site.time | date: "%F" }}</lastmod>
+    <loc>http://0.0.0.0:4321/</loc>
+    <lastmod>2019-04-12</lastmod>
   </url>
 
-  {% for page in site.html_pages %}
-    {% if page.hidden != true %}
+  
+    
       <url>
-        <loc>{{ page.url | absolute_url | replace: '/index.html', '/' }}</loc>
-        {% if page.last_modified_at %}
-          <lastmod>{{ page.last_modified_at | date: "%F" }}</lastmod>
-        {% endif %}
+        <loc>http://0.0.0.0:4321/about/</loc>
+        
+          <lastmod>2019-04-12</lastmod>
+        
       </url>
-    {% endif %}
-  {% endfor %}
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/blog/</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/</loc>
+        
+          <lastmod>2019-04-12</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/resume/</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
 
-  {% for post in site.posts %}
-    {% if post.hidden != true %}
+  
+    
       <url>
-        <loc>{{ post.url | absolute_url }}</loc>
-        {% if post.last_modified_at %}
-          <lastmod>{{ post.last_modified_at | date: "%F" }}</lastmod>
-        {% else %}
-          <lastmod>{{ post.date | date: "%F" }}</lastmod>
-        {% endif %}
+        <loc>http://0.0.0.0:4321/welcome.html</loc>
+        
+          <lastmod>2019-04-11</lastmod>
+        
       </url>
-    {% endif %}
-  {% endfor %}
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/sidekiqasynctask.html</loc>
+        
+          <lastmod>2019-04-12</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/open-graph.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/theme-curtana.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/getting-started.html</loc>
+        
+          <lastmod>2019-04-11</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/customizing-styles.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/configuration.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/themes.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/creating-themes.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/syntax-highlighting.html</loc>
+        
+          <lastmod>2019-04-11</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/markdown-features-test.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/markup-example.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/custom-html-markups.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/custom-color-scheme.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/custom-css.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/external-link-post.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/custom-heading-image.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/custom-heading-background.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
+    
+      <url>
+        <loc>http://0.0.0.0:4321/github-pages-setup.html</loc>
+        
+          <lastmod>2019-04-09</lastmod>
+        
+      </url>
+    
+  
 
 </urlset>
