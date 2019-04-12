@@ -1,3 +1,7 @@
-Sitemap: http://0.0.0.0:4321/sitemap.xml
+---
+---
+Sitemap: {{ "/sitemap.xml" | absolute_url }}
 
-User-agent: *
+{% for post in site.robots -%}
+  {{ post | strip }}
+{% endfor -%}

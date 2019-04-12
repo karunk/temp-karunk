@@ -1,13 +1,16 @@
+---
+---
+
 {
-  "name": "Karun Kalaivanan Vinayagam",
-  "short_name": "AMSF",
-  "start_url": "/",
+  "name": {{ site.name | jsonify }},
+  "short_name": {{ site.name_short | jsonify }},
+  "start_url": {{ "/" | relative_url | jsonify }},
   "display": "standalone",
-  "theme_color": "#ff00b4",
-  "background_color": "#fff",
+  "theme_color": {{ site.colors.theme | jsonify }},
+  "background_color": {{ site.colors.background | jsonify }},
   "icons": [
     {
-      "src": "/favicon.png",
+      "src": {{ "/favicon.ico" | relative_url | jsonify }},
       "sizes": "512x512",
       "type": "image/png"
     }

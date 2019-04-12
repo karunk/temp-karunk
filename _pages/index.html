@@ -1,0 +1,75 @@
+---
+layout: default
+permalink: /
+thumb_force_logo: true
+---
+
+{%- include amsf/core -%}
+
+<!-- Article wrapper, limit width -->
+<article>
+
+  <!-- Post title -->
+  <header style="display: flex; flex-direction: column; padding: 0px; justify-content: space-around;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; align-content: space-between; width: 100%; padding-left: 10%;">
+        <div style="height: 5%; width: 5%; padding-top: 5%;">
+          <img src="{{ amsf_user_assets }}/img/karun.png" style="border-radius: 50%; border-style: solid;">
+        </div>
+        <div style="text-align: left; vertical-align: middle; max-width: 50%;">
+          <div>
+            <h2 class="sub-title"">
+                <b>Software Engineer. Polyglot Programmer. </b>
+            </h2>
+          </div>
+          <div>
+            <small>
+              ポリグロット. &nbsp; プログラマー.
+            </small>
+            <small>Software engineer specialising in <b>Server Side Development</b>, having a keen interest towards 
+            <b>Distributed Systems</b> and Japanese culture.
+            </small>
+          </div>
+        </div>
+    </div>
+    <div style="font-size: 0.7em; text-align: center; ">
+      &#x30FB;connect with me on <a href="https://www.linkedin.com/in/karunkv/">LinkedIN</a>&#x30FB;view my code on <a href="https://github.com/karunk">GitHub</a>&#x30FB;<br>
+      scroll down to see my work
+    </div>
+    
+  </header>
+
+  <div class="page-content"">
+    <h2>Projects</h2>
+    {% for post in site.tags.project %}
+      {%- include themes/{{ site.amsf_theme }}/includes/page-item.html -%}
+    {% endfor %}
+    
+    <div style="display: none">
+    <h2>Projects</h2>
+      {% for post in site.tags.getting-started %}
+        {%- include themes/{{ site.amsf_theme }}/includes/page-item.html -%}
+      {% endfor %}
+
+      <h2>Customization</h2>
+      {% for post in site.tags.customization %}
+        {%- include themes/{{ site.amsf_theme }}/includes/page-item.html -%}
+      {% endfor %}
+
+      <h2>Theme Curtana</h2>
+      {% for post in site.tags.curtana %}
+        {%- include themes/{{ site.amsf_theme }}/includes/page-item.html -%}
+      {% endfor %}
+
+      <h2>Deployment</h2>
+      {% for post in site.tags.deployment %}
+        {%- include themes/{{ site.amsf_theme }}/includes/page-item.html -%}
+      {% endfor %}
+
+      <h2>Miscellaneous</h2>
+      {% for post in site.tags.miscellaneous %}
+        {%- include themes/{{ site.amsf_theme }}/includes/page-item.html -%}
+      {% endfor %}
+    </div>
+  </div>
+
+</article>
