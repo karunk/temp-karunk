@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Karun Kalaivanan Vinayagam</title>
   <subtitle>Super-fast Jekyll framework</subtitle>
-  <updated>2019-04-12T04:02:22-07:00</updated>
+  <updated>2019-08-15T00:09:45-07:00</updated>
   <id>http://0.0.0.0:4321/</id>
   <generator uri="https://sparanoid.com/lab/amsf/" version="2.0.12">Almace Scaffolding</generator>
 
@@ -85,13 +85,13 @@
       
 
       <entry>
-        <title>SidekiqAsyncTask</title>
+        <title>Sidekiq Async Task</title>
         <id>http://0.0.0.0:4321/sidekiqasynctask.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/sidekiqasynctask.html" />
         <published>2019-04-12T00:00:00-07:00</published>
 
         
-          <updated>2019-04-12T04:01:51-07:00</updated>
+          <updated>2019-04-12T06:26:21-07:00</updated>
         
 
         <author>
@@ -107,53 +107,77 @@
 
 &lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
 
-&lt;p&gt;In short answer: yes, but additional actions required.&lt;/p&gt;
+&lt;p&gt;Ever encountered a situation like this in production?&lt;/p&gt;
 
-&lt;p&gt;tl;dr: You can serve AMSF as a static site on GitHub Pages, but not a Jekyll site using Jekyll renderer provided by GitHub Pages.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;transaction&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;user_one&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;process_action_one&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;user_two&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;process_action_two&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;MailWorker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;perform_async&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;UserMailer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;success_mail&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_one&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;MailWorker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;perform_async&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;UserMailer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;success_mail&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_two&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Where we have to process a group of actions within a transaction, and on success send mails to users.
+We use asycronous jobs to send our mails, as it can be blocking if done otherwise.&lt;/p&gt;
 
-&lt;p&gt;There’re some factors that prevent it from generating pages using GitHub Pages renderer:&lt;/p&gt;
+&lt;p&gt;Everything seems fine and simple, but what happens if during the function calls, an error is raised and the transaction which encapsulates these lines of code is rolled back?&lt;/p&gt;
+
+&lt;p&gt;Since the jobs are already scheduled to run asyncronously, they will be processed regardless of the success or failure of the transaction. This can cause a problem, because the users could receive an erroneous notification if the transaction had rolled back and the intended code not executed.&lt;/p&gt;
+
+&lt;p&gt;We thus require, a solution which only schedules asyncronous jobs called within a transaction, &lt;strong&gt;to be processed once the encapsulating transaction commits&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-solution&quot;&gt;The Solution&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://rubygems.org/gems/sidekiq_async_task&quot;&gt;Sidekiq Async Task&lt;/a&gt; solves exactly this problem.
+This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;Sidekiq&lt;/strong&gt; background workers the feature to be &lt;em&gt;transaction-safe&lt;/em&gt;. That is, it guarentees that the asyncronous sidekiq jobs within a transaction will only be executed once the transaction commits.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-usage&quot;&gt;The Usage&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Many features Almace Scaffolding provides like LiveReload, Sass support, inline SVG, and HTML minification are implemented using &lt;a href=&quot;https://gruntjs.com/&quot;&gt;Grunt.js&lt;/a&gt;, it’s not supported by GitHub Pages.&lt;/li&gt;
-  &lt;li&gt;Almace Scaffolding uses the latest pre-release Jekyll, so not all features are supported by GitHub Pages renderers.&lt;/li&gt;
-  &lt;li&gt;GItHub Pages build server &lt;a href=&quot;https://help.github.com/articles/pages-don-t-build-unable-to-run-jekyll#source-setting&quot;&gt;overwrites the &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt; settings&lt;/a&gt;. This prevent it generating pages from current file structure.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Install the gem&lt;/strong&gt;, run the gem generators and migrate your database. (This gem adds a model in your database which keeps track of what asyncronous task to execute when).
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem sidekiq_async_task &lt;span class=&quot;c&quot;&gt;#Add to gemspec&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails generate sidekiq_async_task:install
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rake db:migrate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Inherit&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;SidekiqAsyncTask::TransactionSupport&lt;/code&gt; to your &lt;em&gt;Sidekiq&lt;/em&gt; worker.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;the-solution-for-users-or-organization-sites&quot;&gt;The Solution for Users or Organization Sites&lt;/h2&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MailWorker&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SidekiqAsyncTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TransactionSupport&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Sidekiq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Worker&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;sidekiq_options&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;retry: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
 
-&lt;p&gt;Since GitHub Pages for users or organization sites can only be served from the root directoy of your master branch. You have to:&lt;/p&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;perform_with_callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#Logic for sending mail&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;Make sure your &lt;code class=&quot;highlighter-rouge&quot;&gt;baseurl&lt;/code&gt; is set to &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&quot;&lt;/code&gt; (empty) in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Build your site locally (&lt;code class=&quot;highlighter-rouge&quot;&gt;grunt build&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;Use your own method, create a script, bash, whatever it works to move the generated pages to the root directory of your repository.&lt;/li&gt;
-  &lt;li&gt;Upload Jekyll generated static files to your &lt;code class=&quot;highlighter-rouge&quot;&gt;username.github.io&lt;/code&gt; repository.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you’d like to keep all things under Git control, you can try the following file structure:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── _amsf/ (Almace Scaffolding source code)
-├── *.html (Jekyll-generated static pages)
-└── README.md (your own readme)
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;You can see this &lt;a href=&quot;https://github.com/amsf/amsf.github.io/&quot;&gt;live demo&lt;/a&gt; how it actually works.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Define&lt;/strong&gt; your worker logic in the &lt;code class=&quot;highlighter-rouge&quot;&gt;perform_with_callback&lt;/code&gt; method instead of the generic &lt;code class=&quot;highlighter-rouge&quot;&gt;perform&lt;/code&gt; method, in the worker class.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Schedule&lt;/strong&gt; your asyncronous tasks using any of these interfaces.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h2 id=&quot;the-solution-for-project-sites&quot;&gt;The Solution for Project Sites&lt;/h2&gt;
-
-&lt;p&gt;Things can be simpler if you need AMSF for your project sites since GitHub Pages supports serve your site from a subdirectory:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;HardWorker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;perform_with_transaction_in&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;second&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;HardWorker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;perform_with_transaction_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;HardWorker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;perform_with_transaction_async&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;HardWorker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;perform_with_transaction_future&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Make the following changes in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;:
-    &lt;ul&gt;
-      &lt;li&gt;Change &lt;code class=&quot;highlighter-rouge&quot;&gt;destination&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;docs&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;Change &lt;code class=&quot;highlighter-rouge&quot;&gt;baseurl&lt;/code&gt; to the name of your repository slug, ie. &lt;code class=&quot;highlighter-rouge&quot;&gt;/my-project&lt;/code&gt;.&lt;/li&gt;
-      &lt;li&gt;Change &lt;code class=&quot;highlighter-rouge&quot;&gt;flatten_base&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Build your site locally (&lt;code class=&quot;highlighter-rouge&quot;&gt;grunt build&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;Push changes to GitHub&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Enjoy&lt;/strong&gt; safe transactional asyncronous tasks in rails!&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h2 id=&quot;the-working&quot;&gt;The Working&lt;/h2&gt;
+
+&lt;p&gt;Everytime we ask Sidekiq to run a worker asyncronously, the gem &lt;strong&gt;creates an entry in the AsyncTask table in the database&lt;/strong&gt;. When the transaction commits, the AsyncTask entry also commits. The gem defines logic in the &lt;strong&gt;after_commit callback&lt;/strong&gt; of the AsyncTask model to process the job corresponding to the AsyncTask entry.&lt;/p&gt;
+
+&lt;p&gt;We can also create an &lt;a href=&quot;https://activeadmin.info/&quot;&gt;active_admin&lt;/a&gt; dashboard for this model to have a UI to view all the scheduled and processed AsyncTasks in our database.&lt;/p&gt;
 
           
           
@@ -162,7 +186,7 @@
         </content>
 
         
-          <summary>The ProblemIn short answer: yes, but additional actions required.</summary>
+          <summary>The ProblemEver encountered a situation like this in production?</summary>
         
       </entry>
     
