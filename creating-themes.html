@@ -14,7 +14,7 @@
   <meta charset="utf-8">
 
 
-<title>Creating Your Own Theme - Karun Kalaivanan Vinayagam</title>
+<title>Creating Your Own Theme - Almace Scaffolding</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -48,9 +48,9 @@
 
   </head>
 
-<!-- Open Graph and Twitter Cards support, more info: https://dev.twitter.com/docs/cards -->
+<!-- Open Graph and Twitter Cards support -->
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Karun Kalaivanan Vinayagam">
+<meta property="og:site_name" content="Almace Scaffolding">
 <meta property="og:title" content="Creating Your Own Theme">
 <meta property="og:url" content="http://0.0.0.0:4321/creating-themes.html">
 <meta property="og:description" content="Overview You can create your own theme in AMSF, theme files are located in the following location (I use default theme Curtana here for better understanding): ├── _app/ | ├── _data/ | | └── curtana.yml | ├── _includes/ | |...">
@@ -85,6 +85,15 @@
 
     
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-color-l: 95%;
+      --bg-color-l: 14%;
+      --bg-color-s: 2%;
+      --code-color-l: calc(var(--link-color-l) * 1.3);
+    }
+  }
+  
 
   body {
     
@@ -98,7 +107,7 @@
 <nav class="navigation">
   <ul>
     <li >
-        <a href="/">Karun Kalaivanan Vinayagam</a>
+        <a href="/">Almace Scaffolding</a>
       </li>
     <li >
         <a href="/blog/">Blog</a>
@@ -343,9 +352,9 @@
 <p>Please note that only the first item defined in <code class="highlighter-rouge">lang</code> array will be used in final <code class="highlighter-rouge">lang</code> output, the additional languages will be available in JSON feed output:</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"languages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"zh-tw"</span><span class="p">,</span><span class="w"> </span><span class="s2">"en-us"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"note"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"miscellaneous"</span><span class="p">]</span><span class="w">
+  </span><span class="nl">"languages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"zh-tw"</span><span class="p">,</span><span class="w"> </span><span class="s2">"en-us"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"note"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"miscellaneous"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
@@ -473,8 +482,12 @@ Reading time: 3 hrs 20 mins
 
   <footer class="footer">
     <ul>
-      <li><a href="/">Karun Kalaivanan Vinayagam</a></li>
+      <li><a href="/">Almace Scaffolding</a></li>
 
+      
+        <li>
+          <a href="https://sparanoid.com/lab/amsf/" title="Almace Scaffolding with theme Curtana">AMSF</a>
+        </li>
       
 
       

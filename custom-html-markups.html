@@ -14,7 +14,7 @@
   <meta charset="utf-8">
 
 
-<title>Custom HTML Markups - Karun Kalaivanan Vinayagam</title>
+<title>Custom HTML Markups - Almace Scaffolding</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -48,13 +48,13 @@
 
   </head>
 
-<!-- Open Graph and Twitter Cards support, more info: https://dev.twitter.com/docs/cards -->
+<!-- Open Graph and Twitter Cards support -->
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Karun Kalaivanan Vinayagam">
+<meta property="og:site_name" content="Almace Scaffolding">
 <meta property="og:title" content="Custom HTML Markups">
 <meta property="og:url" content="http://0.0.0.0:4321/custom-html-markups.html">
 <meta property="og:description" content=".note, .store, and .download A paragraph block with a thin border line. Usage [Download](download) it from GitHub {: .download} Love this plugin? please consider [buying me a cup of coffee](donate). {: .store} Example Download it from GitHub Love this plugin?...">
-<meta property="og:image" content="//sparanoid.s3-website-us-east-1.amazonaws.com/delicious.com.png">
+<meta property="og:image" content="https://s3.amazonaws.com/sparanoid/delicious.com.png">
 
 <meta name="twitter:card" content="summary_large_image">
 
@@ -85,6 +85,15 @@
 
     
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-color-l: 95%;
+      --bg-color-l: 14%;
+      --bg-color-s: 2%;
+      --code-color-l: calc(var(--link-color-l) * 1.3);
+    }
+  }
+  
 
   body {
     
@@ -98,7 +107,7 @@
 <nav class="navigation">
   <ul>
     <li >
-        <a href="/">Karun Kalaivanan Vinayagam</a>
+        <a href="/">Almace Scaffolding</a>
       </li>
     <li >
         <a href="/blog/">Blog</a>
@@ -182,7 +191,7 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 
 <h3 id="example-2">Example</h3>
 
-<p class="browser"><img src="//sparanoid.s3-website-us-east-1.amazonaws.com/delicious.com.png" alt="Delicious Preview" class="no-lightense" /></p>
+<p class="browser"><img src="https://s3.amazonaws.com/sparanoid/delicious.com.png" alt="Delicious Preview" class="no-lightense" /></p>
 
 <h2 id="lightense-images"><a href="https://sparanoid.com/work/lightense-images/">Lightense Images</a></h2>
 
@@ -209,7 +218,7 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 
 <h3 id="example-3">Example</h3>
 
-<p><img src="//sparanoid.s3-website-us-east-1.amazonaws.com/moonstruck-princess-ext-red.jpg" alt="Moonstruck Princess Extended - Red" /></p>
+<p><img src="https://s3.amazonaws.com/sparanoid/moonstruck-princess-ext-red.jpg" alt="Moonstruck Princess Extended - Red" /></p>
 
 <h2 id="image-sizes">Image Sizes</h2>
 
@@ -220,7 +229,7 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 <div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">Image</span><span class="p">](</span><span class="sx">https://sparanoid.com/logo.png</span><span class="p">)</span>{: .size-small}
 </code></pre></div></div>
 
-<p><img src="//sparanoid.s3-website-us-east-1.amazonaws.com/moonstruck-princess-ext-orange.jpg" alt="Moonstruck Princess Extended - orange" class="size-small" /></p>
+<p><img src="https://s3.amazonaws.com/sparanoid/moonstruck-princess-ext-orange.jpg" alt="Moonstruck Princess Extended - orange" class="size-small" /></p>
 
 <h3 id="medium-size">Medium Size</h3>
 
@@ -229,14 +238,14 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 <div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">Image</span><span class="p">](</span><span class="sx">https://sparanoid.com/logo.png</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="//sparanoid.s3-website-us-east-1.amazonaws.com/moonstruck-princess-ext-yellow.jpg" alt="Moonstruck Princess Extended - Yellow" /></p>
+<p><img src="https://s3.amazonaws.com/sparanoid/moonstruck-princess-ext-yellow.jpg" alt="Moonstruck Princess Extended - Yellow" /></p>
 
 <h3 id="large-size">Large Size</h3>
 
 <div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">Image</span><span class="p">](</span><span class="sx">https://sparanoid.com/logo.png</span><span class="p">)</span>{: .size-large}
 </code></pre></div></div>
 
-<p><img src="//sparanoid.s3-website-us-east-1.amazonaws.com/moonstruck-princess-ext-green.jpg" alt="Moonstruck Princess Extended - Green" class="size-large" /></p>
+<p><img src="https://s3.amazonaws.com/sparanoid/moonstruck-princess-ext-green.jpg" alt="Moonstruck Princess Extended - Green" class="size-large" /></p>
 
 <h3 id="aligned-images">Aligned Images</h3>
 
@@ -245,7 +254,7 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 <span class="p">![</span><span class="nv">Image</span><span class="p">](</span><span class="sx">https://sparanoid.com/logo.png</span><span class="p">)</span>{: .size-right}
 </code></pre></div></div>
 
-<p><img src="//sparanoid.s3-website-us-east-1.amazonaws.com/moonstruck-princess-ext-blue.jpg" alt="Moonstruck Princess Extended - Blue" class="size-left" /></p>
+<p><img src="https://s3.amazonaws.com/sparanoid/moonstruck-princess-ext-blue.jpg" alt="Moonstruck Princess Extended - Blue" class="size-left" /></p>
 
 <p>Aligned images are smaller images beside text, you can just apply <code class="highlighter-rouge">.size-left</code> or <code class="highlighter-rouge">.size-right</code> to your images and nothing special markup required. However that aligned images will be responded to normal large size for small desktops or mobile devices.</p>
 
@@ -256,14 +265,14 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 <div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">Image</span><span class="p">](</span><span class="sx">https://sparanoid.com/logo.png</span><span class="p">)</span>{: .no-resize}
 </code></pre></div></div>
 
-<p><img src="//sparanoid.s3-website-us-east-1.amazonaws.com/who-can-run.png" alt="Run?" class="no-resize" /></p>
+<p><img src="https://s3.amazonaws.com/sparanoid/who-can-run.png" alt="Run?" class="no-resize" /></p>
 
 <h3 id="small-images-center">Small Images (center)</h3>
 
 <div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">Image</span><span class="p">](</span><span class="sx">https://sparanoid.com/logo.png</span><span class="p">)</span>{: .no-resize.center}
 </code></pre></div></div>
 
-<p><img src="//sparanoid.s3-website-us-east-1.amazonaws.com/who-can-run.png" alt="Run?" class="no-resize center" /></p>
+<p><img src="https://s3.amazonaws.com/sparanoid/who-can-run.png" alt="Run?" class="no-resize center" /></p>
 
 
     
@@ -279,8 +288,12 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 
   <footer class="footer">
     <ul>
-      <li><a href="/">Karun Kalaivanan Vinayagam</a></li>
+      <li><a href="/">Almace Scaffolding</a></li>
 
+      
+        <li>
+          <a href="https://sparanoid.com/lab/amsf/" title="Almace Scaffolding with theme Curtana">AMSF</a>
+        </li>
       
 
       

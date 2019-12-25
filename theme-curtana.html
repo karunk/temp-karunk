@@ -14,7 +14,7 @@
   <meta charset="utf-8">
 
 
-<title>Introducing Curtana - Karun Kalaivanan Vinayagam</title>
+<title>Introducing Curtana - Almace Scaffolding</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -48,9 +48,9 @@
 
   </head>
 
-<!-- Open Graph and Twitter Cards support, more info: https://dev.twitter.com/docs/cards -->
+<!-- Open Graph and Twitter Cards support -->
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Karun Kalaivanan Vinayagam">
+<meta property="og:site_name" content="Almace Scaffolding">
 <meta property="og:title" content="Introducing Curtana">
 <meta property="og:url" content="http://0.0.0.0:4321/theme-curtana.html">
 <meta property="og:description" content="Curtana is the default theme of AMSF (Almace Scaffolding). Features A variant of sparanoid.com, looking great on any modern browsers Minimalism design, No jQuery, no everybody-shake-ur-body.js Ideal for personal blog, portfolio, product blog and Tumblr-like link blog (Maybe) the first...">
@@ -85,6 +85,15 @@
 
     
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-color-l: 95%;
+      --bg-color-l: 14%;
+      --bg-color-s: 2%;
+      --code-color-l: calc(var(--link-color-l) * 1.3);
+    }
+  }
+  
 
   body {
     
@@ -98,7 +107,7 @@
 <nav class="navigation">
   <ul>
     <li >
-        <a href="/">Karun Kalaivanan Vinayagam</a>
+        <a href="/">Almace Scaffolding</a>
       </li>
     <li >
         <a href="/blog/">Blog</a>
@@ -167,8 +176,12 @@
 
   <footer class="footer">
     <ul>
-      <li><a href="/">Karun Kalaivanan Vinayagam</a></li>
+      <li><a href="/">Almace Scaffolding</a></li>
 
+      
+        <li>
+          <a href="https://sparanoid.com/lab/amsf/" title="Almace Scaffolding with theme Curtana">AMSF</a>
+        </li>
       
 
       
