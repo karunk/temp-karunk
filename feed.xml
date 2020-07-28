@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Karun</title>
   <subtitle>Software Engineer</subtitle>
-  <updated>2020-07-28T14:06:18-07:00</updated>
+  <updated>2020-07-28T14:45:14-07:00</updated>
   <id>http://0.0.0.0:4321/</id>
   <generator uri="https://sparanoid.com/lab/amsf/" version="2.0.12">Almace Scaffolding</generator>
 
@@ -27,7 +27,7 @@
         <published>2020-07-25T00:00:00-07:00</published>
 
         
-          <updated>2020-07-25T11:00:54-07:00</updated>
+          <updated>2020-07-28T14:43:10-07:00</updated>
         
 
         <author>
@@ -42,23 +42,29 @@
   &lt;img class=&quot;need-a-pink-border&quot; src=&quot;/assets/img/rails-assets-not-loading.png&quot; /&gt;
 &lt;/p&gt;
 
-&lt;p&gt;There must be a time in every Rails developer’s life where they had to search the above question. The dreaded &lt;a href=&quot;https://guides.rubyonrails.org/asset_pipeline.html&quot;&gt;Rails Asset Pipeline&lt;/a&gt; is perhaps one of the most confusing features in Rails (especially if one deviates from its traditional usage)&lt;/p&gt;
+&lt;p&gt;There must be a time in every Rails developer’s life where they had to search the above question.&lt;/p&gt;
 
-&lt;p&gt;In this post, I describe one of the reasons why your assets might not be loading in production, even though they might be working fine in all your pre-production environments. I had faced this issue on one of my recent production deployments and I too was perplexed and began blaming the Rails Asset pipeline for this nuisance :&lt;/p&gt;
+&lt;p&gt;The dreaded &lt;a href=&quot;https://guides.rubyonrails.org/asset_pipeline.html&quot;&gt;Rails Asset Pipeline&lt;/a&gt; is perhaps one of the most confusing features in Rails, especially if one deviates from its traditional usage. In this post, I describe one of the reasons why your assets might not be loading in production, despite working fine in all your pre-production environments.&lt;/p&gt;
 
-&lt;p&gt;As soon as I deployed my &lt;a href=&quot;https://martinfowler.com/bliki/CanaryRelease.html&quot;&gt;Canary&lt;/a&gt; instance in production, I began receiving the following error for some requests to fetch the &lt;code class=&quot;highlighter-rouge&quot;&gt;CSS&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;JS&lt;/code&gt; files.&lt;/p&gt;
+&lt;h2 id=&quot;the-error&quot;&gt;The Error&lt;/h2&gt;
+
+&lt;p&gt;I had faced this issue in on one of my recent production deployments. As soon as I deployed my &lt;a href=&quot;https://martinfowler.com/bliki/CanaryRelease.html&quot;&gt;Canary&lt;/a&gt; pod in production, I began receiving the following error for some requests to fetch the &lt;code class=&quot;highlighter-rouge&quot;&gt;CSS&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;JS&lt;/code&gt; files.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;500 : Internal Server Error 
 No route matches [GET] /assets.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Seeing the error rate increase I immediately rollback. The rollback stopped the errors. When I began tracing the logs, I was shocked to find that the errors were not just happening in the Canary instance, but all other production instances also. I was shocked because I had not delpoyed the other production instances with the new code yet.&lt;/p&gt;
+&lt;p&gt;Seeing the error rate increase I immediately rollbacked, which stopped the errors. When I began tracing the logs, I was shocked to find that the errors were not just happening in the &lt;code class=&quot;highlighter-rouge&quot;&gt;Canary&lt;/code&gt; pods, but all other production pods also. I was shocked because I had not delpoyed the other production pods with the new code yet.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-my-deployments-were-configured&quot;&gt;How my deployments were configured&lt;/h2&gt;
+
+&lt;p&gt;My service was fronted by an &lt;a href=&quot;https://www.envoyproxy.io/&quot;&gt;Envoy Proxy&lt;/a&gt; which redirected user requests to one of four pods. We used &lt;a href=&quot;https://opensource.com/article/17/5/colorful-deployments&quot;&gt;rolling deployments&lt;/a&gt; to deploy new code into production. A &lt;code class=&quot;highlighter-rouge&quot;&gt;Canary&lt;/code&gt; is first deployed followed by the other production pods.&lt;/p&gt;
 
 &lt;p class=&quot;google-search-question&quot;&gt;
   &lt;img src=&quot;/assets/img/canary-deployed.jpg&quot; /&gt;
 &lt;/p&gt;
 
-&lt;p&gt;My service was fronted by an Envoy Proxy which redirected user requests to one of four production insances. We used &lt;a href=&quot;https://opensource.com/article/17/5/colorful-deployments&quot;&gt;rolling deployments&lt;/a&gt; to deploy new code into production. A canary is first deployed followed by the other production instances.&lt;/p&gt;
+&lt;h2 id=&quot;the-cause&quot;&gt;The Cause&lt;/h2&gt;
 
 &lt;p&gt;After careful analysis of the error logs, I found out that this issue was not a Rails issue but an issue of how our deployments were configured.&lt;/p&gt;
 
@@ -68,135 +74,33 @@ No route matches [GET] /assets.
 common-819894348394.js
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;h2 id=&quot;fingerprinting-asset-files&quot;&gt;Fingerprinting Asset Files&lt;/h2&gt;
+
 &lt;p&gt;The fingerprint suffix in the filename is a hash of the contents of the file. It changes whenever the contents of the file is updated. This behaviour optimizes the load time of the web page, as the browser does not request the asset file, if the file with this name is already cached in the browser.&lt;/p&gt;
 
-&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+&lt;h2 id=&quot;assets-and-html-fetched-from-different-servers&quot;&gt;Assets and HTML fetched from different servers&lt;/h2&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;High performance&lt;/li&gt;
-  &lt;li&gt;One script, no additional dependencies, no bloated styles&lt;/li&gt;
-  &lt;li&gt;Safari &lt;code class=&quot;highlighter-rouge&quot;&gt;backdrop-filter&lt;/code&gt; support&lt;/li&gt;
-  &lt;li&gt;2 KB gzipped&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;When a user sent a request to the backend to load a page, the &lt;code class=&quot;highlighter-rouge&quot;&gt;HTML&lt;/code&gt; was served by one of the following servers : –&lt;/p&gt;
 
-&lt;h2 id=&quot;install&quot;&gt;Install&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Either&lt;/strong&gt; the - Newly deployed canary&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Or&lt;/strong&gt; - Any one of the remaining production servers&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;lightense-images &lt;span class=&quot;nt&quot;&gt;--save&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Our problem arose because -  it is not necessary that the server which serves the HTML will also serve the asset files requested by the HTML.&lt;/em&gt;&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;Or download library and save it to your project&lt;/li&gt;
-  &lt;li&gt;Or host it on a CDN and reference it via &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; tag&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;So if the initial request to load the &lt;code class=&quot;highlighter-rouge&quot;&gt;HTML&lt;/code&gt; page went to the canary pod, it will respond with an HTML containing new asset files. Consequently, the request to fetch these asset files could have reached a pod with an older deployment. If so, the pod would not be able to find the new asset files. Rails being unable to find the required asset file will then forward the request to the controller which will eventually lead to &lt;code class=&quot;highlighter-rouge&quot;&gt;No route matches [GET] /assets&lt;/code&gt; error.&lt;/p&gt;
 
-&lt;p&gt;The Lightense library is wrapped in Universal Module Syntax (UMD), this means that out of the box, you can include it into your web application via &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; tag, &lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt;, or &lt;code class=&quot;highlighter-rouge&quot;&gt;require('lightense-images')&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The vice-versa is also true, i.e. initial &lt;code class=&quot;highlighter-rouge&quot;&gt;HTML&lt;/code&gt; being loaded by the pods having the older deployment, and the request to fetch the assets mentioned in the HTML going to the newly deployed &lt;code class=&quot;highlighter-rouge&quot;&gt;Canary&lt;/code&gt; pod.&lt;/p&gt;
 
-&lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
+&lt;p&gt;This was the reason why, on just deploying the &lt;code class=&quot;highlighter-rouge&quot;&gt;Canary&lt;/code&gt; pod, I started receving errors in all pods.&lt;/p&gt;
 
-&lt;p&gt;Configuration object:&lt;/p&gt;
+&lt;h2 id=&quot;the-fix&quot;&gt;The Fix&lt;/h2&gt;
+&lt;p&gt;As an immediate fix, I removed asset fingerprinting.&lt;/p&gt;
 
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;Lightense&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;elements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;offset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;keyboard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;cubicBezier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;cubic-bezier(.2, 0, .1, 1)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;rgba(255, 255, 255, .98)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;zIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2147483647&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;In my use case, I was only dealing with two asset files. Moreover, my asset files were going to be rapidly changing. Thus, I did not see the benifits of fingerprinting in the short term future.&lt;/p&gt;
 
-&lt;p&gt;Inline data configurations:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image.png&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;data-lightense-padding=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;40&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;data-lightense-cubic-bezier=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cubic-bezier(.2, 0, .1, 1)&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;data-lightense-background=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rgba(255, 255, 255, .98)&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;data-lightense-z-index=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;2147483647&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;/h2&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;photo.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;Lightense&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;custom-background-color&quot;&gt;Custom Background Color&lt;/h2&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;screenshot.png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-lightense-background=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rgba(0, 0, 0, .96)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/sparanoid/railgun-logo.png&quot; data-background=&quot;rgba(23, 29, 54, .8)&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;custom-padding&quot;&gt;Custom Padding&lt;/h2&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;screenshot.png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-lightense-padding=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/sparanoid/delicious.com-logo.png&quot; data-padding=&quot;0&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;disable-lightense-for-specific-elements&quot;&gt;Disable Lightense for Specific Elements&lt;/h2&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;photo.jpg&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;no-lightense&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;Lightense&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;img:not(.no-lightense)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/sparanoid/imouto-logo-large.png&quot; class=&quot;no-lightense&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;custom-event-hooks&quot;&gt;Custom Event Hooks&lt;/h2&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://s3.amazonaws.com/sparanoid/girls_dead_monster_logo.png&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;before-show-alert=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Showing!&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;after-show-alert=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Showed!&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;before-hide-alert=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hiding!&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;after-hide-alert=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hidden!&quot;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;Lightense&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;img:not(.no-lightense),.lightense&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;beforeShow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;beforeShowAttr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;before-show-alert&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;beforeShowAttr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;beforeShowAttr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;afterShow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;afterShowAttr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;after-show-alert&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;afterShowAttr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;afterShowAttr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;beforeHide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;beforeHideMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;before-hide-alert&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;beforeHideMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;beforeHideMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;afterHide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;afterHideMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;after-hide-alert&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;afterHideMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;afterHideMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;download&quot;&gt;Download&lt;/h2&gt;
-
-&lt;div class=&quot;largetype&quot;&gt;
-  &lt;div&gt;&lt;a href=&quot;https://github.com/sparanoid/lightense-images&quot;&gt;Github&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;browser-support&quot;&gt;Browser Support&lt;/h2&gt;
-
-&lt;p&gt;All modern browsers, it “should work” in Internet Explorer 10 and up as well.&lt;/p&gt;
-
-&lt;h2 id=&quot;love-this&quot;&gt;Love this?&lt;/h2&gt;
-
-&lt;p&gt;Please consider &lt;a href=&quot;/donate/&quot;&gt;buying me a cup of coffee&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For the long term, I may plan on introducing an &lt;code class=&quot;highlighter-rouge&quot;&gt;NGINX&lt;/code&gt; layer which will be responsible for caching and serving all my assets.&lt;/p&gt;
 
           
           
@@ -222,7 +126,7 @@ common-819894348394.js
         <published>2019-12-04T00:00:00-08:00</published>
 
         
-          <updated>2019-04-11T14:55:02-07:00</updated>
+          <updated>2020-07-28T14:43:10-07:00</updated>
         
 
         <author>
