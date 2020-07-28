@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Karun</title>
   <subtitle>Software Engineer</subtitle>
-  <updated>2020-07-24T15:08:30-07:00</updated>
+  <updated>2020-07-28T14:06:18-07:00</updated>
   <id>http://0.0.0.0:4321/</id>
   <generator uri="https://sparanoid.com/lab/amsf/" version="2.0.12">Almace Scaffolding</generator>
 
@@ -14,6 +14,201 @@
     <email>mail@vkarun.me</email>
   </author>
 
+  
+    
+      
+
+      
+
+      <entry>
+        <title>Rolling deployments and fingerprintng</title>
+        <id>http://0.0.0.0:4321/rolling-deployments-and-fingerprinting.html</id>
+        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/rolling-deployments-and-fingerprinting.html" />
+        <published>2020-07-25T00:00:00-07:00</published>
+
+        
+          <updated>2020-07-25T11:00:54-07:00</updated>
+        
+
+        <author>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
+        </author>
+
+        <content type="html" xml:base="http://0.0.0.0:4321/">
+          
+            &lt;p class=&quot;google-search-question&quot;&gt;
+  &lt;img class=&quot;need-a-pink-border&quot; src=&quot;/assets/img/rails-assets-not-loading.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;There must be a time in every Rails developer’s life where they had to search the above question. The dreaded &lt;a href=&quot;https://guides.rubyonrails.org/asset_pipeline.html&quot;&gt;Rails Asset Pipeline&lt;/a&gt; is perhaps one of the most confusing features in Rails (especially if one deviates from its traditional usage)&lt;/p&gt;
+
+&lt;p&gt;In this post, I describe one of the reasons why your assets might not be loading in production, even though they might be working fine in all your pre-production environments. I had faced this issue on one of my recent production deployments and I too was perplexed and began blaming the Rails Asset pipeline for this nuisance :&lt;/p&gt;
+
+&lt;p&gt;As soon as I deployed my &lt;a href=&quot;https://martinfowler.com/bliki/CanaryRelease.html&quot;&gt;Canary&lt;/a&gt; instance in production, I began receiving the following error for some requests to fetch the &lt;code class=&quot;highlighter-rouge&quot;&gt;CSS&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;JS&lt;/code&gt; files.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;500 : Internal Server Error 
+No route matches [GET] /assets.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Seeing the error rate increase I immediately rollback. The rollback stopped the errors. When I began tracing the logs, I was shocked to find that the errors were not just happening in the Canary instance, but all other production instances also. I was shocked because I had not delpoyed the other production instances with the new code yet.&lt;/p&gt;
+
+&lt;p class=&quot;google-search-question&quot;&gt;
+  &lt;img src=&quot;/assets/img/canary-deployed.jpg&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;My service was fronted by an Envoy Proxy which redirected user requests to one of four production insances. We used &lt;a href=&quot;https://opensource.com/article/17/5/colorful-deployments&quot;&gt;rolling deployments&lt;/a&gt; to deploy new code into production. A canary is first deployed followed by the other production instances.&lt;/p&gt;
+
+&lt;p&gt;After careful analysis of the error logs, I found out that this issue was not a Rails issue but an issue of how our deployments were configured.&lt;/p&gt;
+
+&lt;p&gt;Let’s say before my recent deployment, I had two asset files &lt;code class=&quot;highlighter-rouge&quot;&gt;common.css&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;common.js&lt;/code&gt;. Since the default behaviour of Rails Asset Pipeline is to minify and &lt;a href=&quot;https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark&quot;&gt;fingerprint&lt;/a&gt; the asset files (as it should), the filenames are modified to the following :&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;common-489839434903.css
+common-819894348394.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The fingerprint suffix in the filename is a hash of the contents of the file. It changes whenever the contents of the file is updated. This behaviour optimizes the load time of the web page, as the browser does not request the asset file, if the file with this name is already cached in the browser.&lt;/p&gt;
+
+&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;High performance&lt;/li&gt;
+  &lt;li&gt;One script, no additional dependencies, no bloated styles&lt;/li&gt;
+  &lt;li&gt;Safari &lt;code class=&quot;highlighter-rouge&quot;&gt;backdrop-filter&lt;/code&gt; support&lt;/li&gt;
+  &lt;li&gt;2 KB gzipped&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;install&quot;&gt;Install&lt;/h2&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;lightense-images &lt;span class=&quot;nt&quot;&gt;--save&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Or download library and save it to your project&lt;/li&gt;
+  &lt;li&gt;Or host it on a CDN and reference it via &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; tag&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The Lightense library is wrapped in Universal Module Syntax (UMD), this means that out of the box, you can include it into your web application via &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; tag, &lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt;, or &lt;code class=&quot;highlighter-rouge&quot;&gt;require('lightense-images')&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
+
+&lt;p&gt;Configuration object:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;Lightense&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;elements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;offset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;keyboard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;cubicBezier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;cubic-bezier(.2, 0, .1, 1)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;rgba(255, 255, 255, .98)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;zIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2147483647&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Inline data configurations:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image.png&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;data-lightense-padding=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;40&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;data-lightense-cubic-bezier=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cubic-bezier(.2, 0, .1, 1)&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;data-lightense-background=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rgba(255, 255, 255, .98)&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;data-lightense-z-index=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;2147483647&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;/h2&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;photo.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;Lightense&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;custom-background-color&quot;&gt;Custom Background Color&lt;/h2&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;screenshot.png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-lightense-background=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rgba(0, 0, 0, .96)&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/sparanoid/railgun-logo.png&quot; data-background=&quot;rgba(23, 29, 54, .8)&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;custom-padding&quot;&gt;Custom Padding&lt;/h2&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;screenshot.png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-lightense-padding=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/sparanoid/delicious.com-logo.png&quot; data-padding=&quot;0&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;disable-lightense-for-specific-elements&quot;&gt;Disable Lightense for Specific Elements&lt;/h2&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;photo.jpg&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;no-lightense&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;Lightense&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;img:not(.no-lightense)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/sparanoid/imouto-logo-large.png&quot; class=&quot;no-lightense&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;custom-event-hooks&quot;&gt;Custom Event Hooks&lt;/h2&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://s3.amazonaws.com/sparanoid/girls_dead_monster_logo.png&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;before-show-alert=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Showing!&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;after-show-alert=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Showed!&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;before-hide-alert=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hiding!&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;after-hide-alert=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hidden!&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;Lightense&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;img:not(.no-lightense),.lightense&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;beforeShow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;beforeShowAttr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;before-show-alert&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;beforeShowAttr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;beforeShowAttr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;afterShow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;afterShowAttr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;after-show-alert&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;afterShowAttr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;afterShowAttr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;beforeHide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;beforeHideMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;before-hide-alert&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;beforeHideMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;beforeHideMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;afterHide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;afterHideMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;after-hide-alert&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;afterHideMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;afterHideMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;download&quot;&gt;Download&lt;/h2&gt;
+
+&lt;div class=&quot;largetype&quot;&gt;
+  &lt;div&gt;&lt;a href=&quot;https://github.com/sparanoid/lightense-images&quot;&gt;Github&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;browser-support&quot;&gt;Browser Support&lt;/h2&gt;
+
+&lt;p&gt;All modern browsers, it “should work” in Internet Explorer 10 and up as well.&lt;/p&gt;
+
+&lt;h2 id=&quot;love-this&quot;&gt;Love this?&lt;/h2&gt;
+
+&lt;p&gt;Please consider &lt;a href=&quot;/donate/&quot;&gt;buying me a cup of coffee&lt;/a&gt;.&lt;/p&gt;
+
+          
+          
+        
+      
+        </content>
+
+        
+          <summary>  </summary>
+        
+      </entry>
+    
   
     
       
@@ -38,43 +233,37 @@
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
           
-            &lt;p&gt;AMSF, a.k.a. &lt;strong&gt;Almace Scaffolding&lt;/strong&gt;, is a super-fast Jekyll framework fighting against the website obesity. It supports LiveReload, Sass, HTML minification, inlined stylesheets and more.&lt;/p&gt;
+            &lt;blockquote&gt;
+  &lt;p&gt;This plugin is no longer maintained.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p class=&quot;largetype&quot;&gt;
-  &lt;a href=&quot;/getting-started.html&quot;&gt;Getting Started →&lt;/a&gt;
-&lt;/p&gt;
+&lt;p&gt;Slimpack — Lightweight Jetpack. Super-fast performance without modules that require contracting WordPress.com.&lt;/p&gt;
 
-&lt;p&gt;Go to the &lt;a href=&quot;https://github.com/sparanoid/almace-scaffolding&quot;&gt;GitHub&lt;/a&gt; page for downloads, bug reports, and feature requests.&lt;/p&gt;
+&lt;p&gt;It provides better performance than original Jetpack. All features that require a WordPress.com account or need contracting / syncing back to WordPress.com servers have been removed. You don’t need to connect to WordPress.com to use this plugin. If your site got slow response time (TTFB) after activating the original Jetpack, you should definitely try out this plugin.&lt;/p&gt;
 
-&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+&lt;h3 id=&quot;features&quot;&gt;Features&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Theme switching, you can switch themes with just one command&lt;/li&gt;
-  &lt;li&gt;A basic, fully configured Jekyll setup with well-defined &lt;a href=&quot;https://github.com/sparanoid/almace-scaffolding/blob/master/_app/feed-atom.xml&quot;&gt;Atom feed&lt;/a&gt; and &lt;a href=&quot;https://github.com/sparanoid/almace-scaffolding/blob/master/_app/sitemap.xml&quot;&gt;sitemap&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Almace Scaffolding&lt;/strong&gt; ships a sleek responsive theme &lt;a href=&quot;https://github.com/amsf/amsf-curtana&quot;&gt;Curtana&lt;/a&gt;, a variant of &lt;a href=&quot;https://sparanoid.com/&quot;&gt;sparanoid.com&lt;/a&gt;, looking great on any modern browsers&lt;/li&gt;
-  &lt;li&gt;Every minified page generates only one HTTP request &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/sparanoid/almace-scaffolding/blob/master/_config.init.yml&quot;&gt;Tons of configurable settings&lt;/a&gt; for your posts and site customization&lt;/li&gt;
-  &lt;li&gt;Service Worker support for lightning fast experience&lt;/li&gt;
-  &lt;li&gt;Built with Grunt.js for easy development&lt;/li&gt;
-  &lt;li&gt;Travis support&lt;/li&gt;
+  &lt;li&gt;Transfer from Jetpack to Slimpack seamlessly, just deactivate Jetpack and activate Slimpack, all settings and module status will be kept and work just like before.&lt;/li&gt;
+  &lt;li&gt;All source code is untouched and synced from Jetpack&lt;/li&gt;
+  &lt;li&gt;Better performance than original Jetpack. All features that require a WordPress.com account have been removed. You don’t need to connect to WordPress.com to use this plugin.&lt;/li&gt;
+  &lt;li&gt;Multilingual support (and languages have already bundled in Slimpack!)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;Based on the theme you’re using, theme Curtana generates only one HTTP request for production build when your posts don’t have fancy sliders or other external media files. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
+&lt;p class=&quot;download&quot;&gt;&lt;a href=&quot;https://wordpress.org/plugins/slimpack/&quot;&gt;Download&lt;/a&gt; it at WordPress.org&lt;/p&gt;
+
+&lt;p&gt;Love this plugin? please consider &lt;a href=&quot;/donate/&quot;&gt;buying me a cup of coffee&lt;/a&gt;.&lt;/p&gt;
 
           
           
+        
+          &lt;p&gt;&lt;a href=&quot;https://wordpress.org/plugins/slimpack/&quot;&gt;&lt;small&gt;◉ Direct Link to Original Site&lt;/small&gt;&lt;/a&gt;&lt;/p&gt;
         
       
         </content>
 
         
-          <summary>AMSF, a.k.a. Almace Scaffolding, is a super-fast Jekyll framework fighting against the website obesity. It supports LiveReload, Sass, HTML minification, inlined stylesheets and more.</summary>
+          <summary>Slimpack — Lightweight Jetpack. Super-fast performance without modules that require contracting WordPress.com.</summary>
         
       </entry>
     
@@ -91,7 +280,7 @@
         <published>2019-04-12T00:00:00-07:00</published>
 
         
-          <updated>2019-08-15T01:00:45-07:00</updated>
+          <updated>2020-07-24T16:28:22-07:00</updated>
         
 
         <author>
@@ -2147,91 +2336,6 @@ css: |
 
         
           <summary>This is an example of custom heading background. You can simply add the following setting to your post front-matter field:</summary>
-        
-      </entry>
-    
-  
-    
-      
-
-      
-
-      <entry>
-        <title>GitHub Pages Setup Guide</title>
-        <id>http://0.0.0.0:4321/github-pages-setup.html</id>
-        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/github-pages-setup.html" />
-        <published>2014-01-01T00:00:00-08:00</published>
-
-        
-          <updated>2019-04-09T12:23:53-07:00</updated>
-        
-
-        <author>
-          <name>Karun Kalaivanan Vinayagam</name>
-          <uri>http://vkarun.me/</uri>
-          <email>mail@vkarun.me</email>
-        </author>
-
-        <content type="html" xml:base="http://0.0.0.0:4321/">
-          
-            &lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
-
-&lt;p&gt;In short answer: yes, but additional actions required.&lt;/p&gt;
-
-&lt;p&gt;tl;dr: You can serve AMSF as a static site on GitHub Pages, but not a Jekyll site using Jekyll renderer provided by GitHub Pages.&lt;/p&gt;
-
-&lt;p&gt;There’re some factors that prevent it from generating pages using GitHub Pages renderer:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Many features Almace Scaffolding provides like LiveReload, Sass support, inline SVG, and HTML minification are implemented using &lt;a href=&quot;https://gruntjs.com/&quot;&gt;Grunt.js&lt;/a&gt;, it’s not supported by GitHub Pages.&lt;/li&gt;
-  &lt;li&gt;Almace Scaffolding uses the latest pre-release Jekyll, so not all features are supported by GitHub Pages renderers.&lt;/li&gt;
-  &lt;li&gt;GItHub Pages build server &lt;a href=&quot;https://help.github.com/articles/pages-don-t-build-unable-to-run-jekyll#source-setting&quot;&gt;overwrites the &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt; settings&lt;/a&gt;. This prevent it generating pages from current file structure.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;the-solution-for-users-or-organization-sites&quot;&gt;The Solution for Users or Organization Sites&lt;/h2&gt;
-
-&lt;p&gt;Since GitHub Pages for users or organization sites can only be served from the root directoy of your master branch. You have to:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Make sure your &lt;code class=&quot;highlighter-rouge&quot;&gt;baseurl&lt;/code&gt; is set to &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&quot;&lt;/code&gt; (empty) in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Build your site locally (&lt;code class=&quot;highlighter-rouge&quot;&gt;grunt build&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;Use your own method, create a script, bash, whatever it works to move the generated pages to the root directory of your repository.&lt;/li&gt;
-  &lt;li&gt;Upload Jekyll generated static files to your &lt;code class=&quot;highlighter-rouge&quot;&gt;username.github.io&lt;/code&gt; repository.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you’d like to keep all things under Git control, you can try the following file structure:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── _amsf/ (Almace Scaffolding source code)
-├── *.html (Jekyll-generated static pages)
-└── README.md (your own readme)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can see this &lt;a href=&quot;https://github.com/amsf/amsf.github.io/&quot;&gt;live demo&lt;/a&gt; how it actually works.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-solution-for-project-sites&quot;&gt;The Solution for Project Sites&lt;/h2&gt;
-
-&lt;p&gt;Things can be simpler if you need AMSF for your project sites since GitHub Pages supports serve your site from a subdirectory:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Make the following changes in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;:
-    &lt;ul&gt;
-      &lt;li&gt;Change &lt;code class=&quot;highlighter-rouge&quot;&gt;destination&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;docs&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;Change &lt;code class=&quot;highlighter-rouge&quot;&gt;baseurl&lt;/code&gt; to the name of your repository slug, ie. &lt;code class=&quot;highlighter-rouge&quot;&gt;/my-project&lt;/code&gt;.&lt;/li&gt;
-      &lt;li&gt;Change &lt;code class=&quot;highlighter-rouge&quot;&gt;flatten_base&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Build your site locally (&lt;code class=&quot;highlighter-rouge&quot;&gt;grunt build&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;Push changes to GitHub&lt;/li&gt;
-&lt;/ul&gt;
-
-          
-          
-        
-      
-        </content>
-
-        
-          <summary>The Problem</summary>
         
       </entry>
     

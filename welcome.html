@@ -19,16 +19,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <!-- Define a description for better SEO result -->
-<meta name="description" content="AMSF, a.k.a. Almace Scaffolding, is a super-fast Jekyll framework fighting against the website obesity. It supports LiveReload, Sass, HTML minification, inlined stylesheets and more. Getting Started → Go to the GitHub page for downloads, bug reports, and feature requests. Features...">
+<meta name="description" content="This plugin is no longer maintained. Slimpack — Lightweight Jetpack. Super-fast performance without modules that require contracting WordPress.com. It provides better performance than original Jetpack. All features that require a WordPress.com account or need contracting / syncing back to WordPre......">
 
 <!-- Cheome Web App theme color -->
-<meta name="theme-color" content="#ff00b4">
+<meta name="theme-color" content="#ff8226">
 
 <!-- Feed URL -->
 <link rel="alternate" href="/feed.xml" type="application/atom+xml">
 
 <!-- Site icons -->
-<link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="icon" href="/favicon.png" type="image/png"><link rel="icon" href="/favicon.svg?assets-inline-assets-keep" sizes="any" type="image/svg+xml"><link rel="mask-icon" href="/mask-icon.svg" color="#ff00b4">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="icon" href="/favicon.png" type="image/png"><link rel="icon" href="/favicon.svg?assets-inline-assets-keep" sizes="any" type="image/svg+xml"><link rel="mask-icon" href="/mask-icon.svg" color="#ff8226">
 
 <!-- Chrome Web App manifest -->
 <link rel="manifest" href="/manifest.json">
@@ -53,8 +53,8 @@
 <meta property="og:site_name" content="Karun">
 <meta property="og:title" content="Welcome">
 <meta property="og:url" content="http://0.0.0.0:4321/welcome.html">
-<meta property="og:description" content="AMSF, a.k.a. Almace Scaffolding, is a super-fast Jekyll framework fighting against the website obesity. It supports LiveReload, Sass, HTML minification, inlined stylesheets and more. Getting Started → Go to the GitHub page for downloads, bug reports, and feature requests. Features...">
-<meta property="og:image" content="http://0.0.0.0:4321/logo.png">
+<meta property="og:description" content="This plugin is no longer maintained. Slimpack — Lightweight Jetpack. Super-fast performance without modules that require contracting WordPress.com. It provides better performance than original Jetpack. All features that require a WordPress.com account or need contracting / syncing back to WordPre......">
+<meta property="og:image" content="https://s3.amazonaws.com/sparanoid/thumb/slimpack-thumb.png">
 
 <meta name="twitter:card" content="summary_large_image">
 
@@ -78,24 +78,40 @@
 <style data-assets-inline>
   :root {
     
-
+    --link-color: #ffdf00;
     
 
     
+    --bg-color: #ff8226;
+    
 
+    
+    --text-color: #fff;
+    
+
+    
+    --code-color: #ffdf00;
     
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --text-color-l: 95%;
-      --bg-color-l: 14%;
-      --bg-color-s: 2%;
-      --code-color-l: calc(var(--link-color-l) * 1.3);
-    }
-  }
-  
 
   body {
+    
+      
+      background-image:
+        
+          
+          
+            url("/assets/svg/slimpack-bg.svg")
+          
+          
+        
+          ,
+          
+            url("/assets/svg/slimpack-bg-alt.svg")
+          
+          
+        
+      ;
     
   }
 
@@ -121,7 +137,15 @@
 <!-- Main content wrap -->
 <main class="content " role=main>
   <!-- Post-wide custom CSS -->
+<style>
+      body {
+  background-position: center bottom, center bottom;
+  background-repeat: no-repeat, no-repeat;
+  background-size: contain, cover;
+  padding-bottom: 16vmin;
+}
 
+    </style>
 
 <!-- Article wrapper, limit width -->
 <article lang="en">
@@ -130,7 +154,9 @@
   <header style="     ">
 
     <h1 class="" title="Welcome" data-title="Welcome">
+      <a href="https://wordpress.org/plugins/slimpack/" class=external>
       Welcome<span class="dot dot--post"> </span>
+    </a>
     </h1>
 
     
@@ -146,34 +172,26 @@
 
   <!-- Post content -->
   <div class="post-content">
-    <p>AMSF, a.k.a. <strong>Almace Scaffolding</strong>, is a super-fast Jekyll framework fighting against the website obesity. It supports LiveReload, Sass, HTML minification, inlined stylesheets and more.</p>
+    <blockquote>
+  <p>This plugin is no longer maintained.</p>
+</blockquote>
 
-<p class="largetype">
-  <a href="/getting-started.html">Getting Started →</a>
-</p>
+<p>Slimpack — Lightweight Jetpack. Super-fast performance without modules that require contracting WordPress.com.</p>
 
-<p>Go to the <a href="https://github.com/sparanoid/almace-scaffolding">GitHub</a> page for downloads, bug reports, and feature requests.</p>
+<p>It provides better performance than original Jetpack. All features that require a WordPress.com account or need contracting / syncing back to WordPress.com servers have been removed. You don’t need to connect to WordPress.com to use this plugin. If your site got slow response time (TTFB) after activating the original Jetpack, you should definitely try out this plugin.</p>
 
-<h2 id="features">Features</h2>
+<h3 id="features">Features</h3>
 
 <ul>
-  <li>Theme switching, you can switch themes with just one command</li>
-  <li>A basic, fully configured Jekyll setup with well-defined <a href="https://github.com/sparanoid/almace-scaffolding/blob/master/_app/feed-atom.xml">Atom feed</a> and <a href="https://github.com/sparanoid/almace-scaffolding/blob/master/_app/sitemap.xml">sitemap</a></li>
-  <li><strong>Almace Scaffolding</strong> ships a sleek responsive theme <a href="https://github.com/amsf/amsf-curtana">Curtana</a>, a variant of <a href="https://sparanoid.com/">sparanoid.com</a>, looking great on any modern browsers</li>
-  <li>Every minified page generates only one HTTP request <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></li>
-  <li><a href="https://github.com/sparanoid/almace-scaffolding/blob/master/_config.init.yml">Tons of configurable settings</a> for your posts and site customization</li>
-  <li>Service Worker support for lightning fast experience</li>
-  <li>Built with Grunt.js for easy development</li>
-  <li>Travis support</li>
+  <li>Transfer from Jetpack to Slimpack seamlessly, just deactivate Jetpack and activate Slimpack, all settings and module status will be kept and work just like before.</li>
+  <li>All source code is untouched and synced from Jetpack</li>
+  <li>Better performance than original Jetpack. All features that require a WordPress.com account have been removed. You don’t need to connect to WordPress.com to use this plugin.</li>
+  <li>Multilingual support (and languages have already bundled in Slimpack!)</li>
 </ul>
 
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>Based on the theme you’re using, theme Curtana generates only one HTTP request for production build when your posts don’t have fancy sliders or other external media files. <a href="#fnref:1" class="reversefootnote">&#8617;&#xfe0e;</a></p>
-    </li>
-  </ol>
-</div>
+<p class="download"><a href="https://wordpress.org/plugins/slimpack/">Download</a> it at WordPress.org</p>
+
+<p>Love this plugin? please consider <a href="/donate/">buying me a cup of coffee</a>.</p>
 
 
     
