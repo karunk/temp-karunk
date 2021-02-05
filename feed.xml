@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Karun</title>
   <subtitle>Software Engineer</subtitle>
-  <updated>2020-07-28T14:45:14-07:00</updated>
+  <updated>2021-02-05T14:22:37-08:00</updated>
   <id>http://0.0.0.0:4321/</id>
   <generator uri="https://sparanoid.com/lab/amsf/" version="2.0.12">Almace Scaffolding</generator>
 
@@ -27,7 +27,7 @@
         <published>2020-07-25T00:00:00-07:00</published>
 
         
-          <updated>2020-07-28T14:43:10-07:00</updated>
+          <updated>2021-02-05T14:11:39-08:00</updated>
         
 
         <author>
@@ -58,7 +58,7 @@ No route matches [GET] /assets.
 
 &lt;h2 id=&quot;how-my-deployments-were-configured&quot;&gt;How my deployments were configured&lt;/h2&gt;
 
-&lt;p&gt;My service was fronted by an &lt;a href=&quot;https://www.envoyproxy.io/&quot;&gt;Envoy Proxy&lt;/a&gt; which redirected user requests to one of four pods. We used &lt;a href=&quot;https://opensource.com/article/17/5/colorful-deployments&quot;&gt;rolling deployments&lt;/a&gt; to deploy new code into production. A &lt;code class=&quot;highlighter-rouge&quot;&gt;Canary&lt;/code&gt; is first deployed followed by the other production pods.&lt;/p&gt;
+&lt;p&gt;MMMy service was fronted by an &lt;a href=&quot;https://www.envoyproxy.io/&quot;&gt;Envoy Proxy&lt;/a&gt; which redirected user requests to one of four pods. We used &lt;a href=&quot;https://opensource.com/article/17/5/colorful-deployments&quot;&gt;rolling deployments&lt;/a&gt; to deploy new code into production. A &lt;code class=&quot;highlighter-rouge&quot;&gt;Canary&lt;/code&gt; is first deployed followed by the other production pods.&lt;/p&gt;
 
 &lt;p class=&quot;google-search-question&quot;&gt;
   &lt;img src=&quot;/assets/img/canary-deployed.jpg&quot; /&gt;
@@ -126,7 +126,7 @@ common-819894348394.js
         <published>2019-12-04T00:00:00-08:00</published>
 
         
-          <updated>2020-07-28T14:43:10-07:00</updated>
+          <updated>2021-02-05T14:11:39-08:00</updated>
         
 
         <author>
