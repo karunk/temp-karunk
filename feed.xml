@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Karun</title>
-  <subtitle>Software Engineer</subtitle>
-  <updated>2021-02-05T14:22:37-08:00</updated>
+  <title>Almace Scaffolding</title>
+  <subtitle>Super-fast Jekyll framework</subtitle>
+  <updated>2022-11-13T12:08:29-08:00</updated>
   <id>http://0.0.0.0:4321/</id>
-  <generator uri="https://sparanoid.com/lab/amsf/" version="2.0.12">Almace Scaffolding</generator>
+  <generator uri="https://sparanoid.com/lab/amsf/" version="2.0.18">Almace Scaffolding</generator>
 
   <link rel="alternate" type="text/html" hreflang="en" href="http://0.0.0.0:4321/" />
   <link rel="self" type="application/atom+xml" href="http://0.0.0.0:4321/feed.xml" />
@@ -27,7 +27,7 @@
         <published>2020-07-25T00:00:00-07:00</published>
 
         
-          <updated>2021-02-05T14:11:39-08:00</updated>
+          <updated>2021-02-05T14:41:58-08:00</updated>
         
 
         <author>
@@ -48,17 +48,17 @@
 
 &lt;h2 id=&quot;the-error&quot;&gt;The Error&lt;/h2&gt;
 
-&lt;p&gt;I had faced this issue in on one of my recent production deployments. As soon as I deployed my &lt;a href=&quot;https://martinfowler.com/bliki/CanaryRelease.html&quot;&gt;Canary&lt;/a&gt; pod in production, I began receiving the following error for some requests to fetch the &lt;code class=&quot;highlighter-rouge&quot;&gt;CSS&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;JS&lt;/code&gt; files.&lt;/p&gt;
+&lt;p&gt;I had faced this issue in on one of my recent production deployments. As soon as I deployed my &lt;a href=&quot;https://martinfowler.com/bliki/CanaryRelease.html&quot;&gt;Canary&lt;/a&gt; pod in production, I began receiving the following error for some requests to fetch the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CSS&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JS&lt;/code&gt; files.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;500 : Internal Server Error 
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;500 : Internal Server Error 
 No route matches [GET] /assets.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Seeing the error rate increase I immediately rollbacked, which stopped the errors. When I began tracing the logs, I was shocked to find that the errors were not just happening in the &lt;code class=&quot;highlighter-rouge&quot;&gt;Canary&lt;/code&gt; pods, but all other production pods also. I was shocked because I had not delpoyed the other production pods with the new code yet.&lt;/p&gt;
+&lt;p&gt;Seeing the error rate increase I immediately rollbacked, which stopped the errors. When I began tracing the logs, I was shocked to find that the errors were not just happening in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Canary&lt;/code&gt; pods, but all other production pods also. I was shocked because I had not delpoyed the other production pods with the new code yet.&lt;/p&gt;
 
 &lt;h2 id=&quot;how-my-deployments-were-configured&quot;&gt;How my deployments were configured&lt;/h2&gt;
 
-&lt;p&gt;MMMy service was fronted by an &lt;a href=&quot;https://www.envoyproxy.io/&quot;&gt;Envoy Proxy&lt;/a&gt; which redirected user requests to one of four pods. We used &lt;a href=&quot;https://opensource.com/article/17/5/colorful-deployments&quot;&gt;rolling deployments&lt;/a&gt; to deploy new code into production. A &lt;code class=&quot;highlighter-rouge&quot;&gt;Canary&lt;/code&gt; is first deployed followed by the other production pods.&lt;/p&gt;
+&lt;p&gt;MMMy service was fronted by an &lt;a href=&quot;https://www.envoyproxy.io/&quot;&gt;Envoy Proxy&lt;/a&gt; which redirected user requests to one of four pods. We used &lt;a href=&quot;https://opensource.com/article/17/5/colorful-deployments&quot;&gt;rolling deployments&lt;/a&gt; to deploy new code into production. A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Canary&lt;/code&gt; is first deployed followed by the other production pods.&lt;/p&gt;
 
 &lt;p class=&quot;google-search-question&quot;&gt;
   &lt;img src=&quot;/assets/img/canary-deployed.jpg&quot; /&gt;
@@ -68,9 +68,9 @@ No route matches [GET] /assets.
 
 &lt;p&gt;After careful analysis of the error logs, I found out that this issue was not a Rails issue but an issue of how our deployments were configured.&lt;/p&gt;
 
-&lt;p&gt;Let’s say before my recent deployment, I had two asset files &lt;code class=&quot;highlighter-rouge&quot;&gt;common.css&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;common.js&lt;/code&gt;. Since the default behaviour of Rails Asset Pipeline is to minify and &lt;a href=&quot;https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark&quot;&gt;fingerprint&lt;/a&gt; the asset files (as it should), the filenames are modified to the following :&lt;/p&gt;
+&lt;p&gt;Let’s say before my recent deployment, I had two asset files &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;common.css&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;common.js&lt;/code&gt;. Since the default behaviour of Rails Asset Pipeline is to minify and &lt;a href=&quot;https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark&quot;&gt;fingerprint&lt;/a&gt; the asset files (as it should), the filenames are modified to the following :&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;common-489839434903.css
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;common-489839434903.css
 common-819894348394.js
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -80,7 +80,7 @@ common-819894348394.js
 
 &lt;h2 id=&quot;assets-and-html-fetched-from-different-servers&quot;&gt;Assets and HTML fetched from different servers&lt;/h2&gt;
 
-&lt;p&gt;When a user sent a request to the backend to load a page, the &lt;code class=&quot;highlighter-rouge&quot;&gt;HTML&lt;/code&gt; was served by one of the following servers : –&lt;/p&gt;
+&lt;p&gt;When a user sent a request to the backend to load a page, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HTML&lt;/code&gt; was served by one of the following servers : –&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;strong&gt;Either&lt;/strong&gt; the - Newly deployed canary&lt;/li&gt;
@@ -89,18 +89,18 @@ common-819894348394.js
 
 &lt;p&gt;&lt;em&gt;Our problem arose because -  it is not necessary that the server which serves the HTML will also serve the asset files requested by the HTML.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;So if the initial request to load the &lt;code class=&quot;highlighter-rouge&quot;&gt;HTML&lt;/code&gt; page went to the canary pod, it will respond with an HTML containing new asset files. Consequently, the request to fetch these asset files could have reached a pod with an older deployment. If so, the pod would not be able to find the new asset files. Rails being unable to find the required asset file will then forward the request to the controller which will eventually lead to &lt;code class=&quot;highlighter-rouge&quot;&gt;No route matches [GET] /assets&lt;/code&gt; error.&lt;/p&gt;
+&lt;p&gt;So if the initial request to load the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HTML&lt;/code&gt; page went to the canary pod, it will respond with an HTML containing new asset files. Consequently, the request to fetch these asset files could have reached a pod with an older deployment. If so, the pod would not be able to find the new asset files. Rails being unable to find the required asset file will then forward the request to the controller which will eventually lead to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;No route matches [GET] /assets&lt;/code&gt; error.&lt;/p&gt;
 
-&lt;p&gt;The vice-versa is also true, i.e. initial &lt;code class=&quot;highlighter-rouge&quot;&gt;HTML&lt;/code&gt; being loaded by the pods having the older deployment, and the request to fetch the assets mentioned in the HTML going to the newly deployed &lt;code class=&quot;highlighter-rouge&quot;&gt;Canary&lt;/code&gt; pod.&lt;/p&gt;
+&lt;p&gt;The vice-versa is also true, i.e. initial &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HTML&lt;/code&gt; being loaded by the pods having the older deployment, and the request to fetch the assets mentioned in the HTML going to the newly deployed &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Canary&lt;/code&gt; pod.&lt;/p&gt;
 
-&lt;p&gt;This was the reason why, on just deploying the &lt;code class=&quot;highlighter-rouge&quot;&gt;Canary&lt;/code&gt; pod, I started receving errors in all pods.&lt;/p&gt;
+&lt;p&gt;This was the reason why, on just deploying the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Canary&lt;/code&gt; pod, I started receving errors in all pods.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-fix&quot;&gt;The Fix&lt;/h2&gt;
 &lt;p&gt;As an immediate fix, I removed asset fingerprinting.&lt;/p&gt;
 
 &lt;p&gt;In my use case, I was only dealing with two asset files. Moreover, my asset files were going to be rapidly changing. Thus, I did not see the benifits of fingerprinting in the short term future.&lt;/p&gt;
 
-&lt;p&gt;For the long term, I may plan on introducing an &lt;code class=&quot;highlighter-rouge&quot;&gt;NGINX&lt;/code&gt; layer which will be responsible for caching and serving all my assets.&lt;/p&gt;
+&lt;p&gt;For the long term, I may plan on introducing an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NGINX&lt;/code&gt; layer which will be responsible for caching and serving all my assets.&lt;/p&gt;
 
           
           
@@ -233,7 +233,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rake db:migrate
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Inherit&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;SidekiqAsyncTask::TransactionSupport&lt;/code&gt; to your &lt;em&gt;Sidekiq&lt;/em&gt; worker.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Inherit&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SidekiqAsyncTask::TransactionSupport&lt;/code&gt; to your &lt;em&gt;Sidekiq&lt;/em&gt; worker.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MailWorker&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SidekiqAsyncTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TransactionSupport&lt;/span&gt;
@@ -249,7 +249,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Define&lt;/strong&gt; your worker logic in the &lt;code class=&quot;highlighter-rouge&quot;&gt;perform_with_callback&lt;/code&gt; method instead of the generic &lt;code class=&quot;highlighter-rouge&quot;&gt;perform&lt;/code&gt; method, in the worker class.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Define&lt;/strong&gt; your worker logic in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;perform_with_callback&lt;/code&gt; method instead of the generic &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;perform&lt;/code&gt; method, in the worker class.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;Schedule&lt;/strong&gt; your asyncronous tasks using any of these interfaces.&lt;/p&gt;
@@ -312,13 +312,13 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 &lt;p&gt;It will look for the image in the following order:&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Use &lt;code class=&quot;highlighter-rouge&quot;&gt;page.thumbnail&lt;/code&gt; if defined in your post &lt;a href=&quot;https://jekyllrb.com/docs/frontmatter/&quot;&gt;front-matter field&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;If no specified &lt;code class=&quot;highlighter-rouge&quot;&gt;page.thumbnail&lt;/code&gt; defined, it uses &lt;a href=&quot;/custom-heading-background.html&quot;&gt;Heading Background Image&lt;/a&gt; (aka. &lt;code class=&quot;highlighter-rouge&quot;&gt;page.heading-bg&lt;/code&gt;) if defined in your post front-matter field.&lt;/li&gt;
-  &lt;li&gt;If no heading background image found, Curtana will try to grab the first image (wrapped inside &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt;) in your post as your post thumbnail&lt;/li&gt;
-  &lt;li&gt;If nothing found, it fails back to &lt;code class=&quot;highlighter-rouge&quot;&gt;logo.png&lt;/code&gt; located at your site root.&lt;/li&gt;
+  &lt;li&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.thumbnail&lt;/code&gt; if defined in your post &lt;a href=&quot;https://jekyllrb.com/docs/frontmatter/&quot;&gt;front-matter field&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;If no specified &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.thumbnail&lt;/code&gt; defined, it uses &lt;a href=&quot;/custom-heading-background.html&quot;&gt;Heading Background Image&lt;/a&gt; (aka. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.heading-bg&lt;/code&gt;) if defined in your post front-matter field.&lt;/li&gt;
+  &lt;li&gt;If no heading background image found, Curtana will try to grab the first image (wrapped inside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt;) in your post as your post thumbnail&lt;/li&gt;
+  &lt;li&gt;If nothing found, it fails back to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logo.png&lt;/code&gt; located at your site root.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;You can always use &lt;code class=&quot;highlighter-rouge&quot;&gt;page.thumb_force_logo&lt;/code&gt; in your post front-matter field to override the above lookup.&lt;/p&gt;
+&lt;p&gt;You can always use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.thumb_force_logo&lt;/code&gt; in your post front-matter field to override the above lookup.&lt;/p&gt;
 
 &lt;p&gt;Here’s a preview on Twitter:&lt;/p&gt;
 
@@ -365,7 +365,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 
 &lt;ul&gt;
   &lt;li&gt;A variant of &lt;a href=&quot;https://sparanoid.com/&quot;&gt;sparanoid.com&lt;/a&gt;, looking great on any modern browsers&lt;/li&gt;
-  &lt;li&gt;Minimalism design, No jQuery, no &lt;code class=&quot;highlighter-rouge&quot;&gt;everybody-shake-ur-body.js&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Minimalism design, No jQuery, no &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;everybody-shake-ur-body.js&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;Ideal for personal blog, portfolio, product blog and Tumblr-like link blog&lt;/li&gt;
   &lt;li&gt;(Maybe) &lt;a href=&quot;https://github.com/sparanoid/sparanoid.com/commit/9b44b4c0f57c3dd1e828d828a95cc21b992785ce&quot;&gt;the first&lt;/a&gt; template that uses &lt;a href=&quot;https://www.w3.org/TR/css3-values/#viewport-relative-lengths&quot;&gt;viewport relative units&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Handcrafted stylesheets. No Bootstrap or other bloated frameworks are used, unminified CSS &amp;lt; 12 KB&lt;/li&gt;
@@ -420,9 +420,9 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/sparanoid/almace-scaffolding/fork&quot;&gt;Fork&lt;/a&gt; or clone the repo.&lt;/li&gt;
-  &lt;li&gt;Install dependencies with Ruby gem &lt;a href=&quot;https://bundler.io/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bundler&lt;/code&gt;&lt;/a&gt; and Node.js package manager &lt;a href=&quot;https://www.npmjs.org/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;grunt init&lt;/code&gt; to initialize your project.&lt;/li&gt;
-  &lt;li&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;grunt serve&lt;/code&gt; to fire up a local server.&lt;/li&gt;
+  &lt;li&gt;Install dependencies with Ruby gem &lt;a href=&quot;https://bundler.io/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundler&lt;/code&gt;&lt;/a&gt; and Node.js package manager &lt;a href=&quot;https://www.npmjs.org/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;grunt init&lt;/code&gt; to initialize your project.&lt;/li&gt;
+  &lt;li&gt;Run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;grunt serve&lt;/code&gt; to fire up a local server.&lt;/li&gt;
   &lt;li&gt;Edit and customize your site.&lt;/li&gt;
   &lt;li&gt;Change Git remote to your own repo.&lt;/li&gt;
   &lt;li&gt;Push and deploy.&lt;/li&gt;
@@ -448,7 +448,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 
 &lt;h2 id=&quot;transfer-from-jekyll&quot;&gt;Transfer from Jekyll&lt;/h2&gt;
 
-&lt;p&gt;You can simply copy all posts from your old Jekyll setup into &lt;code class=&quot;highlighter-rouge&quot;&gt;_app/_posts&lt;/code&gt;, you can also transfer your custom pages into &lt;code class=&quot;highlighter-rouge&quot;&gt;_app/_pages/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can simply copy all posts from your old Jekyll setup into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_app/_posts&lt;/code&gt;, you can also transfer your custom pages into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_app/_pages/&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;upgrading&quot;&gt;Upgrading&lt;/h2&gt;
 
@@ -461,12 +461,12 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 
 &lt;h2 id=&quot;using-beta-release&quot;&gt;Using Beta Release&lt;/h2&gt;
 
-&lt;p&gt;By default, when you run &lt;code class=&quot;highlighter-rouge&quot;&gt;amsf-update&lt;/code&gt; you will get updated files from &lt;code class=&quot;highlighter-rouge&quot;&gt;release&lt;/code&gt; branch. However, I’m continuously working on Almace Scaffolding, so there may have testing branches you can try and give me feedback if you’re interested. You can check the AMSF GitHub repository for available branches, and it’s very easy to switch:&lt;/p&gt;
+&lt;p&gt;By default, when you run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;amsf-update&lt;/code&gt; you will get updated files from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;release&lt;/code&gt; branch. However, I’m continuously working on Almace Scaffolding, so there may have testing branches you can try and give me feedback if you’re interested. You can check the AMSF GitHub repository for available branches, and it’s very easy to switch:&lt;/p&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt amsf-update &lt;span class=&quot;nt&quot;&gt;--branch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;feat/service-worker
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The branch &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; is the one which is always available to checkout and also has the latest changes:&lt;/p&gt;
+&lt;p&gt;The branch &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; is the one which is always available to checkout and also has the latest changes:&lt;/p&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt amsf-update &lt;span class=&quot;nt&quot;&gt;--branch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -511,9 +511,9 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
           
-            &lt;p&gt;You can customize the basic look and feel without touching the theme files by changing &lt;code class=&quot;highlighter-rouge&quot;&gt;user.js&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;user.scss&lt;/code&gt;:&lt;/p&gt;
+            &lt;p&gt;You can customize the basic look and feel without touching the theme files by changing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user.js&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user.scss&lt;/code&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── _app/
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── _app/
 |   ├── assets/
 |   |   └── _js/
 |   |   |   └── user.js
@@ -563,11 +563,11 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
             &lt;h2 id=&quot;configuration-settings&quot;&gt;Configuration Settings&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;All AMSF built-in settings can be configured at &lt;a href=&quot;https://github.com/sparanoid/almace-scaffolding/blob/master/_config.yml&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;Theme specific variables can be found at &lt;code class=&quot;highlighter-rouge&quot;&gt;./_app/_data/theme-name.yml&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Additional variables are stored in &lt;a href=&quot;https://github.com/sparanoid/almace-scaffolding/blob/master/_app/_data&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;./_app/_data/&lt;/code&gt;&lt;/a&gt; directory. They can be accessed by Jekyll. (&lt;a href=&quot;https://jekyllrb.com/docs/datafiles/&quot;&gt;More info&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;You should also change &lt;code class=&quot;highlighter-rouge&quot;&gt;favicon.*&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;apple-touch-icon.png&lt;/code&gt; to yours.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;logo.png&lt;/code&gt; is mainly used by Open Graph and Twitter Cards when there’s no featured image in a post, you should also design your own.&lt;/li&gt;
+  &lt;li&gt;All AMSF built-in settings can be configured at &lt;a href=&quot;https://github.com/sparanoid/almace-scaffolding/blob/master/_config.yml&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Theme specific variables can be found at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./_app/_data/theme-name.yml&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Additional variables are stored in &lt;a href=&quot;https://github.com/sparanoid/almace-scaffolding/blob/master/_app/_data&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./_app/_data/&lt;/code&gt;&lt;/a&gt; directory. They can be accessed by Jekyll. (&lt;a href=&quot;https://jekyllrb.com/docs/datafiles/&quot;&gt;More info&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;You should also change &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;favicon.*&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apple-touch-icon.png&lt;/code&gt; to yours.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logo.png&lt;/code&gt; is mainly used by Open Graph and Twitter Cards when there’s no featured image in a post, you should also design your own.&lt;/li&gt;
   &lt;li&gt;More customization please refer to theme specific documentation&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -626,21 +626,21 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 
 &lt;h3 id=&quot;via-git-github&quot;&gt;Via Git (GitHub)&lt;/h3&gt;
 
-&lt;p&gt;The easiest way to install new theme is via &lt;code class=&quot;highlighter-rouge&quot;&gt;theme-add&lt;/code&gt;, the following command will install theme Curtana from its official repo &lt;code class=&quot;highlighter-rouge&quot;&gt;amsf/amsf-curtana&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;The easiest way to install new theme is via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;theme-add&lt;/code&gt;, the following command will install theme Curtana from its official repo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;amsf/amsf-curtana&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt theme-add &lt;span class=&quot;nt&quot;&gt;--theme&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;curtana
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If you’d install custom theme from other users, append &lt;code class=&quot;highlighter-rouge&quot;&gt;--user&lt;/code&gt; in your command, the following command will install a new theme named &lt;code class=&quot;highlighter-rouge&quot;&gt;bootstrap-sass&lt;/code&gt; from &lt;code class=&quot;highlighter-rouge&quot;&gt;sparanoid/amsf-bootstrap-sass&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;If you’d install custom theme from other users, append &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--user&lt;/code&gt; in your command, the following command will install a new theme named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bootstrap-sass&lt;/code&gt; from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sparanoid/amsf-bootstrap-sass&lt;/code&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt theme-add &lt;span class=&quot;nt&quot;&gt;--theme&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;bootstrap-sass &lt;span class=&quot;nt&quot;&gt;--user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;sparanoid
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;manually-install&quot;&gt;Manually Install&lt;/h3&gt;
 
-&lt;p&gt;You can also install themes manually. find an AMSF theme (Curtana, for example), download the package and uncompress all files to &lt;code class=&quot;highlighter-rouge&quot;&gt;.amsf-cache/themes&lt;/code&gt; directory, the file structure should look like:&lt;/p&gt;
+&lt;p&gt;You can also install themes manually. find an AMSF theme (Curtana, for example), download the package and uncompress all files to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.amsf-cache/themes&lt;/code&gt; directory, the file structure should look like:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── .amsf-cache/ (Almace Scaffolding cache directory)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── .amsf-cache/ (Almace Scaffolding cache directory)
 |   ├── themes/
 |   |   └── curtana/
 |   |   |   └── assets/
@@ -656,7 +656,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt activate &lt;span class=&quot;nt&quot;&gt;--theme&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;curtana
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;You current theme will be backed up to &lt;code class=&quot;highlighter-rouge&quot;&gt;.amsf-cache/themes/your-old-theme/&lt;/code&gt; and the new theme &lt;code class=&quot;highlighter-rouge&quot;&gt;curtana&lt;/code&gt; will be installed to the appropriate directories.&lt;/p&gt;
+&lt;p&gt;You current theme will be backed up to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.amsf-cache/themes/your-old-theme/&lt;/code&gt; and the new theme &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;curtana&lt;/code&gt; will be installed to the appropriate directories.&lt;/p&gt;
 
 &lt;h2 id=&quot;upgrading-themes&quot;&gt;Upgrading Themes&lt;/h2&gt;
 
@@ -706,7 +706,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 
 &lt;p&gt;You can create your own theme in AMSF, theme files are located in the following location (I use default theme Curtana here for better understanding):&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── _app/
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── _app/
 |   ├── _data/
 |   |   └── curtana.yml
 |   ├── _includes/
@@ -727,13 +727,13 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 |   |   |   |   └── ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The theme specific config &lt;code class=&quot;highlighter-rouge&quot;&gt;curtana.yml&lt;/code&gt; should have the same filename as your theme name. It should contain theme specific variables and can also override AMSF built-in settings.&lt;/p&gt;
+&lt;p&gt;The theme specific config &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;curtana.yml&lt;/code&gt; should have the same filename as your theme name. It should contain theme specific variables and can also override AMSF built-in settings.&lt;/p&gt;
 
 &lt;p&gt;More info about theme structure you can check out my default theme &lt;a href=&quot;https://github.com/amsf/amsf-curtana&quot;&gt;Curtana&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;You can also have multiple themes in your project, as many as you like. For example if you also have themes Bootstrap and Ghost installed, the file structure should be:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── _app/
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── _app/
 |   ├── _data/
 |   |   └── bootstrap.yml
 |   |   └── curtana.yml
@@ -786,7 +786,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 
 &lt;p&gt;There’re several built-in options you can use in your theme. These options can also be overridden in theme specific config.&lt;/p&gt;
 
-&lt;h3 id=&quot;sitename&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;site.name&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;sitename&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.name&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;Template:&lt;/p&gt;
 
@@ -808,7 +808,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/footer&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;sitedescription&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;site.description&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;sitedescription&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.description&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;Site description, will appear in the document meta and Atom feed subtitle.&lt;/p&gt;
 
@@ -822,7 +822,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;property=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;og:description&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;A super-fast Jekyll framework fighting against the website obesity.&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;sitefile&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;site.file&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;sitefile&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.file&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;Media assets URL used in posts, without trailing slash. In the most cases this URL should be powered by a CDN provider.&lt;/p&gt;
 
@@ -841,7 +841,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//d349cztnlupsuf.cloudfront.net/post-thumbnail.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;sitetwitter&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;site.twitter&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;sitetwitter&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.twitter&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;Site Twitter account handle.&lt;/p&gt;
 
@@ -855,9 +855,9 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://twitter.com/sparanoid&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Follow @sparanoid on Twitter&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;siteforce_utf_8&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;site.force_utf_8&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;siteforce_utf_8&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.force_utf_8&lt;/code&gt;&lt;/h3&gt;
 
-&lt;p&gt;Force UTF-8 encoding, enable this will simply add &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;meta charset=&quot;utf-8&quot;&amp;gt;&lt;/code&gt; to the head of your pages.&lt;/p&gt;
+&lt;p&gt;Force UTF-8 encoding, enable this will simply add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;meta charset=&quot;utf-8&quot;&amp;gt;&lt;/code&gt; to the head of your pages.&lt;/p&gt;
 
 &lt;p&gt;Template:&lt;/p&gt;
 
@@ -866,9 +866,9 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 {% endif %}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;siterobots&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;site.robots&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;siterobots&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.robots&lt;/code&gt;&lt;/h3&gt;
 
-&lt;p&gt;You can define your own records in &lt;code class=&quot;highlighter-rouge&quot;&gt;robots.txt&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can define your own records in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;robots.txt&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Config:&lt;/p&gt;
 
@@ -891,7 +891,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;zh-tw&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;An additional &lt;code class=&quot;highlighter-rouge&quot;&gt;lang&lt;/code&gt; HTML attribute will be added to your final rendering:&lt;/p&gt;
+&lt;p&gt;An additional &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lang&lt;/code&gt; HTML attribute will be added to your final rendering:&lt;/p&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;article&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;zh-tw&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
   ...
@@ -905,7 +905,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;en-us&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Please note that only the first item defined in &lt;code class=&quot;highlighter-rouge&quot;&gt;lang&lt;/code&gt; array will be used in final &lt;code class=&quot;highlighter-rouge&quot;&gt;lang&lt;/code&gt; output, the additional languages will be available in JSON feed output:&lt;/p&gt;
+&lt;p&gt;Please note that only the first item defined in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lang&lt;/code&gt; array will be used in final &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lang&lt;/code&gt; output, the additional languages will be available in JSON feed output:&lt;/p&gt;
 
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;languages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;zh-tw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;en-us&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -918,13 +918,13 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 
 &lt;p&gt;For better performance, Almace Scaffolding will find all the CSS, script links and images in compiled HTML, and outputs a version with all the CSS, scripts and images (Base64) written inline. Sounds cool? but it needs theme support. Here’s how:&lt;/p&gt;
 
-&lt;p&gt;You can simply add the query string &lt;code class=&quot;highlighter-rouge&quot;&gt;?assets-inline&lt;/code&gt; at the end of the file you’d like to be inlined in production site:&lt;/p&gt;
+&lt;p&gt;You can simply add the query string &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;?assets-inline&lt;/code&gt; at the end of the file you’d like to be inlined in production site:&lt;/p&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- This CSS will be inlined into HTML --&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ '/css/app.css?assets-inline' | prepend: amsf_theme_assets }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ &apos;/css/app.css?assets-inline&apos; | prepend: amsf_theme_assets }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
 
 &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- This script will be inlined into HTML --&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ '/js/app.js?assets-inline' | prepend: amsf_theme_assets }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ &apos;/js/app.js?assets-inline&apos; | prepend: amsf_theme_assets }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;user-custom-styles-support&quot;&gt;User Custom Styles Support&lt;/h3&gt;
@@ -940,7 +940,7 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
 &lt;p&gt;Define the following code snippet into your theme template (it’s recommended to put it in footer) will allow users to add custom scripts without touching the theme files:&lt;/p&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- User custom scripts --&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ '/js/user.js?assets-inline' | prepend: amsf_user_assets }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ &apos;/js/user.js?assets-inline&apos; | prepend: amsf_user_assets }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;page--post-specific-css-block-support&quot;&gt;Page / Post Specific CSS Block Support&lt;/h3&gt;
@@ -1020,7 +1020,7 @@ Reading time: 3 hrs 20 mins
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt theme-save
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The activated theme will be saved to AMSF cache (&lt;code class=&quot;highlighter-rouge&quot;&gt;.amsf-cache/&lt;/code&gt;) with correct file and directory structure, then you can upload your theme to GitHub.&lt;/p&gt;
+&lt;p&gt;The activated theme will be saved to AMSF cache (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.amsf-cache/&lt;/code&gt;) with correct file and directory structure, then you can upload your theme to GitHub.&lt;/p&gt;
 
 &lt;p&gt;Still confusing? see my default theme &lt;a href=&quot;https://github.com/amsf/amsf-curtana&quot;&gt;Curtana&lt;/a&gt; for reference.&lt;/p&gt;
 
@@ -1061,7 +1061,7 @@ Reading time: 3 hrs 20 mins
           
             &lt;p&gt;Code highlighting demo, powered by Rouge. More info about code highlighting can be found at &lt;a href=&quot;https://jekyllrb.com/docs/templates/#code-snippet-highlighting&quot;&gt;Jekyll’s documentation&lt;/a&gt;.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.code-text (@link, @text) when (lightness(@link) &amp;gt;= 50%) and (lightness(@link) &amp;lt; lightness(@text)) {
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.code-text (@link, @text) when (lightness(@link) &amp;gt;= 50%) and (lightness(@link) &amp;lt; lightness(@text)) {
   @return-color: lighten(@text, 20%);
   @return-value: 30%;
 }
@@ -1096,8 +1096,8 @@ Reading time: 3 hrs 20 mins
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;Tom&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &apos;Hi, Tom&apos; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
@@ -1126,7 +1126,7 @@ Reading time: 3 hrs 20 mins
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Load the http module to create an http server.&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;// Configure our HTTP server to respond with Hello World to all requests.&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -1190,14 +1190,14 @@ Reading time: 3 hrs 20 mins
 &lt;div class=&quot;language-moonscript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my.module&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a_table&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;foo:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'bar'&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;foo:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;bar&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;interpolated:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;foo-&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stuff&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;&quot;string&quot;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;do:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'keyword'&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;do:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;keyword&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
 &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MyClass&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SomeClass&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;new:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg2&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'default'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;new:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg2&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;default&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@derived&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@init&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
@@ -1207,7 +1207,7 @@ Reading time: 3 hrs 20 mins
 
 &lt;div class=&quot;language-apache highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;AddDefaultCharset&lt;/span&gt; UTF-8
 
-&lt;span class=&quot;nc&quot;&gt;RewriteEngine&lt;/span&gt; On
+&lt;span class=&quot;nc&quot;&gt;RewriteEngine&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;On&lt;/span&gt;
 
 &lt;span class=&quot;c&quot;&gt;# Serve gzipped version if available and accepted&lt;/span&gt;
 &lt;span class=&quot;nc&quot;&gt;AddEncoding&lt;/span&gt; x-gzip .gz
@@ -1272,7 +1272,7 @@ Reading time: 3 hrs 20 mins
   &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.001&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.001&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;thrice&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))))&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;plot&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;thrice&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;deriv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;-5&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;cos&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;-5&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;#:color&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;'blue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;cos&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;-5&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;#:color&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;&apos;blue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;;; Print the Greek alphabet&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;in-range&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)])&lt;/span&gt;
@@ -1290,20 +1290,20 @@ Reading time: 3 hrs 20 mins
   &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;echo-server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-puppet highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;service&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ntp'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+&lt;div class=&quot;language-puppet highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;service&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;ntp&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;py&quot;&gt;name&lt;/span&gt;      &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$service_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
   &lt;span class=&quot;py&quot;&gt;ensure&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;running&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
   &lt;span class=&quot;py&quot;&gt;enable&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;subscribe&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ntp.conf'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;subscribe&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;ntp.conf&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-dart highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;collection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;collection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;div class=&quot;language-dart highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;collection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;collection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class=&quot;language-tcl highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;proc cross_sum &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;s&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;expr &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;join &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;split $s &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; +&lt;span class=&quot;p&quot;&gt;]}&lt;/span&gt;
@@ -1317,7 +1317,7 @@ Reading time: 3 hrs 20 mins
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class=&quot;language-vb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;Private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Sub&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Form_Load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;' Execute a simple message box that says &quot;Hello, World!&quot;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;&apos; Execute a simple message box that says &quot;Hello, World!&quot;&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;MsgBox&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Hello, World!&quot;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;End&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Sub&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1350,9 +1350,9 @@ and &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&
     &lt;span class=&quot;na&quot;&gt;insertafter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;^;&quot;&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;with_items&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;error_log'&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/var/log/php-fpm/error.log'&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;log_level'&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;error'&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;emergency_restart_threshold'&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;10'&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;error_log&apos;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/var/log/php-fpm/error.log&apos;&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;log_level&apos;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;error&apos;&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;emergency_restart_threshold&apos;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;10&apos;&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
           
@@ -1392,7 +1392,7 @@ and &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&
           
             &lt;h2 id=&quot;indented-code-blocks&quot;&gt;Indented Code Blocks&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def show
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def show
   @widget = Widget(params[:id])
   respond_to do |format|
     format.html # show.html.erb
@@ -1401,7 +1401,7 @@ and &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&
 end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;liquid-tag-with-linenos-support&quot;&gt;Liquid Tag with &lt;code class=&quot;highlighter-rouge&quot;&gt;linenos&lt;/code&gt; Support&lt;/h2&gt;
+&lt;h2 id=&quot;liquid-tag-with-linenos-support&quot;&gt;Liquid Tag with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;linenos&lt;/code&gt; Support&lt;/h2&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
@@ -1419,7 +1419,7 @@ end
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h2 id=&quot;gfm-code-blocks-fenced_code_blocks&quot;&gt;GFM Code Blocks (&lt;code class=&quot;highlighter-rouge&quot;&gt;fenced_code_blocks&lt;/code&gt;)&lt;/h2&gt;
+&lt;h2 id=&quot;gfm-code-blocks-fenced_code_blocks&quot;&gt;GFM Code Blocks (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fenced_code_blocks&lt;/code&gt;)&lt;/h2&gt;
 
 &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;/* Background color function */&lt;/span&gt;
 &lt;span class=&quot;nc&quot;&gt;.code-bg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;@v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lightness&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -1495,26 +1495,26 @@ end
 
 &lt;h2 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h2&gt;
 
-&lt;p&gt;This&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; is&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; a sentence&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;This&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; is&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; a sentence&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;id-日本語タイトル&quot;&gt;ID 日本語タイトル&lt;/h2&gt;
 
-&lt;p&gt;Expected id should be &lt;code class=&quot;highlighter-rouge&quot;&gt;id-ri-ben-yu-taitoru&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Expected id should be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id-ri-ben-yu-taitoru&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;id-中文標題&quot;&gt;ID 中文標題&lt;/h2&gt;
 
-&lt;p&gt;Expected id should be &lt;code class=&quot;highlighter-rouge&quot;&gt;id-zhong-wen-biao-ti&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Expected id should be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id-zhong-wen-biao-ti&lt;/code&gt;.&lt;/p&gt;
 
-&lt;div class=&quot;footnotes&quot;&gt;
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
   &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;Lorem lean startup ipsum &lt;strong&gt;product market fit customer development&lt;/strong&gt; acquihire technical cofounder. User engagement A/B testing shrink a market venture capital pitch deck. Social bookmarking group buying &lt;a href=&quot;#&quot;&gt;crowded market&lt;/a&gt; pivot onboarding freemium prototype ping pong. Early stage disruptive ecosystem community outreach dynamic location based strategic investor. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Lorem lean startup ipsum &lt;strong&gt;product market fit customer development&lt;/strong&gt; acquihire technical cofounder. User engagement A/B testing shrink a market venture capital pitch deck. Social bookmarking group buying &lt;a href=&quot;#&quot;&gt;crowded market&lt;/a&gt; pivot onboarding freemium prototype ping pong. Early stage disruptive ecosystem community outreach dynamic location based strategic investor. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://web.archive.org/web/20160425094356/http://blog.readability.com:80/2012/06/announcement/&quot;&gt;An Important Announcement&lt;/a&gt; by Richard Ziade at Readability &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://web.archive.org/web/20160425094356/http://blog.readability.com:80/2012/06/announcement/&quot;&gt;An Important Announcement&lt;/a&gt; by Richard Ziade at Readability &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;Good afterble constanoon, this sweet hongi is as bung as a stuffed morepork. Mean while, in the marae, Dr Ropata and Hairy Maclary from Donaldson’s Dairy were up to no good with a bunch of bloody troties. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Good afterble constanoon, this sweet hongi is as bung as a stuffed morepork. Mean while, in the marae, Dr Ropata and Hairy Maclary from Donaldson’s Dairy were up to no good with a bunch of bloody troties. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
@@ -1574,12 +1574,12 @@ end
 &lt;p&gt;HTML defines a long list of available inline tags, a complete list of which can be found on the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element&quot;&gt;Mozilla Developer Network&lt;/a&gt;.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;To bold text&lt;/strong&gt;, use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;To italicize text&lt;/em&gt;, use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;em&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Abbreviations, like &lt;abbr title=&quot;HyperText Markup Langage&quot;&gt;HTML&lt;/abbr&gt; should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;abbr&amp;gt;&lt;/code&gt;, with an optional &lt;code class=&quot;highlighter-rouge&quot;&gt;title&lt;/code&gt; attribute for the full phrase.&lt;/li&gt;
-  &lt;li&gt;Citations, like &lt;cite&gt;— Tunghsiao Liu &amp;amp; Mark otto&lt;/cite&gt;, should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;cite&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;del&gt;Deleted&lt;/del&gt; text should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;del&amp;gt;&lt;/code&gt; and &lt;ins&gt;inserted&lt;/ins&gt; text should use &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;ins&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Superscript &lt;sup&gt;text&lt;/sup&gt; uses &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;sup&amp;gt;&lt;/code&gt; and subscript &lt;sub&gt;text&lt;/sub&gt; uses &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;sub&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;To bold text&lt;/strong&gt;, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;To italicize text&lt;/em&gt;, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;em&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Abbreviations, like &lt;abbr title=&quot;HyperText Markup Langage&quot;&gt;HTML&lt;/abbr&gt; should use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;abbr&amp;gt;&lt;/code&gt;, with an optional &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;title&lt;/code&gt; attribute for the full phrase.&lt;/li&gt;
+  &lt;li&gt;Citations, like &lt;cite&gt;— Tunghsiao Liu &amp;amp; Mark otto&lt;/cite&gt;, should use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;cite&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;del&gt;Deleted&lt;/del&gt; text should use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;del&amp;gt;&lt;/code&gt; and &lt;ins&gt;inserted&lt;/ins&gt; text should use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;ins&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Superscript &lt;sup&gt;text&lt;/sup&gt; uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;sup&amp;gt;&lt;/code&gt; and subscript &lt;sub&gt;text&lt;/sub&gt; uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;sub&amp;gt;&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -1827,7 +1827,7 @@ Careful Skippy, you really aren’t as convincing as you think you are.&lt;/p&gt
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
           
-            &lt;h2 id=&quot;note-store-and-download&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.note&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.store&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;.download&lt;/code&gt;&lt;/h2&gt;
+            &lt;h2 id=&quot;note-store-and-download&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.note&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.store&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.download&lt;/code&gt;&lt;/h2&gt;
 
 &lt;p&gt;A paragraph block with a thin border line.&lt;/p&gt;
 
@@ -1846,7 +1846,7 @@ Love this plugin? please consider &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
 
 &lt;p class=&quot;store&quot;&gt;Love this plugin? please consider buying me a cup of coffee.&lt;/p&gt;
 
-&lt;h2 id=&quot;largetype&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.largetype&lt;/code&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;largetype&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.largetype&lt;/code&gt;&lt;/h2&gt;
 
 &lt;p&gt;Make normal paragraph text large enough.&lt;/p&gt;
 
@@ -1860,7 +1860,7 @@ Love this plugin? please consider &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
 
 &lt;p class=&quot;largetype&quot;&gt;&lt;a href=&quot;https://sparanoid.com/donate/&quot;&gt;PayPal&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;browser&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.browser&lt;/code&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;browser&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.browser&lt;/code&gt;&lt;/h2&gt;
 
 &lt;p&gt;A simple browser frame using pure CSS.&lt;/p&gt;
 
@@ -1882,7 +1882,7 @@ Love this plugin? please consider &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
 
 &lt;p&gt;Add the following setting to your post &lt;a href=&quot;https://jekyllrb.com/docs/frontmatter/&quot;&gt;front-matter field&lt;/a&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;plugin: lightense
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;plugin: lightense
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Markdown markup:&lt;/p&gt;
@@ -1890,12 +1890,12 @@ Love this plugin? please consider &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
 &lt;div class=&quot;language-md highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;![&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;https://sparanoid.com/photo.jpg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Lightense Images is activated globally by default, if you want to disable this effect for specific image, you can simply apply &lt;code class=&quot;highlighter-rouge&quot;&gt;.no-lightense&lt;/code&gt; CSS class to your image or &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Lightense Images is activated globally by default, if you want to disable this effect for specific image, you can simply apply &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.no-lightense&lt;/code&gt; CSS class to your image or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-md highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;![&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;https://sparanoid.com/logo.png&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;{: .no-lightense}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Please note that if you’re using HTML markup, you should wrap your images into a &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&lt;/code&gt; container.&lt;/p&gt;
+&lt;p&gt;Please note that if you’re using HTML markup, you should wrap your images into a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&lt;/code&gt; container.&lt;/p&gt;
 
 &lt;h3 id=&quot;example-3&quot;&gt;Example&lt;/h3&gt;
 
@@ -1937,7 +1937,7 @@ Love this plugin? please consider &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/sparanoid/moonstruck-princess-ext-blue.jpg&quot; alt=&quot;Moonstruck Princess Extended - Blue&quot; class=&quot;size-left&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Aligned images are smaller images beside text, you can just apply &lt;code class=&quot;highlighter-rouge&quot;&gt;.size-left&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;.size-right&lt;/code&gt; to your images and nothing special markup required. However that aligned images will be responded to normal large size for small desktops or mobile devices.&lt;/p&gt;
+&lt;p&gt;Aligned images are smaller images beside text, you can just apply &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.size-left&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.size-right&lt;/code&gt; to your images and nothing special markup required. However that aligned images will be responded to normal large size for small desktops or mobile devices.&lt;/p&gt;
 
 &lt;h3 id=&quot;small-images&quot;&gt;Small Images&lt;/h3&gt;
 
@@ -1992,7 +1992,7 @@ Love this plugin? please consider &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
           
             &lt;p&gt;This is an example how to change your post color scheme for specific posts. You can simply add the following variables to your post &lt;a href=&quot;https://jekyllrb.com/docs/frontmatter/&quot;&gt;front-matter field&lt;/a&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scheme-text: &quot;#0029ff&quot;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scheme-text: &quot;#0029ff&quot;
 scheme-link: &quot;#ff00b4&quot;
 scheme-hover: &quot;#ff00b4&quot;
 scheme-code: &quot;#ad00ff&quot;
@@ -2004,7 +2004,7 @@ scheme-hero-bg: &quot;#0029ff&quot;
 
 &lt;p&gt;You can also ignore other variables if you only want to change the background:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scheme-bg: &quot;#00ebff&quot;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scheme-bg: &quot;#00ebff&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
           
@@ -2042,9 +2042,9 @@ scheme-hero-bg: &quot;#0029ff&quot;
 
         <content type="html" xml:base="http://0.0.0.0:4321/">
           
-            &lt;p&gt;This is an example how to change your post styling via CSS. You can simply add the &lt;code class=&quot;highlighter-rouge&quot;&gt;css&lt;/code&gt; option to your post &lt;a href=&quot;https://jekyllrb.com/docs/frontmatter/&quot;&gt;front-matter field&lt;/a&gt;:&lt;/p&gt;
+            &lt;p&gt;This is an example how to change your post styling via CSS. You can simply add the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;css&lt;/code&gt; option to your post &lt;a href=&quot;https://jekyllrb.com/docs/frontmatter/&quot;&gt;front-matter field&lt;/a&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scheme-text: &quot;#000&quot;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scheme-text: &quot;#000&quot;
 scheme-link: &quot;#a73300&quot;
 scheme-hover: &quot;#ff4e00&quot;
 scheme-code: &quot;#a73300&quot;
@@ -2143,20 +2143,20 @@ css: |
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;In Almace Scaffolding v1.1.0, the original &lt;code class=&quot;highlighter-rouge&quot;&gt;svg-headline*&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;img-headline*&lt;/code&gt; options are deprecated.&lt;/p&gt;
+  &lt;p&gt;In Almace Scaffolding v1.1.0, the original &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;svg-headline*&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;img-headline*&lt;/code&gt; options are deprecated.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;dl&gt;
-  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;heading-img&lt;/code&gt;&lt;/dt&gt;
-  &lt;dd&gt;Heading image filename, if a relative URL (non-external URL) is provided, the file will be prefixed with &lt;code class=&quot;highlighter-rouge&quot;&gt;site.file&lt;/code&gt;.&lt;/dd&gt;
-  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;heading-img-local&lt;/code&gt;&lt;/dt&gt;
-  &lt;dd&gt;To avoid relative URL prefixed by &lt;code class=&quot;highlighter-rouge&quot;&gt;site.file&lt;/code&gt;, you can set this option to &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt; to prefix it with &lt;code class=&quot;highlighter-rouge&quot;&gt;amsf_user_assets&lt;/code&gt;, then you can store your images in &lt;code class=&quot;highlighter-rouge&quot;&gt;_app/assets/&lt;/code&gt;.&lt;/dd&gt;
-  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;heading-img-width&lt;/code&gt;&lt;/dt&gt;
-  &lt;dd&gt;Set the width of your heading image. The value will be converted to viewport unit automatically. ie. &lt;code class=&quot;highlighter-rouge&quot;&gt;heading-img-width: 400&lt;/code&gt; will be converted to &lt;code class=&quot;highlighter-rouge&quot;&gt;width: 40vw&lt;/code&gt;;&lt;/dd&gt;
+  &lt;dt&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heading-img&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;Heading image filename, if a relative URL (non-external URL) is provided, the file will be prefixed with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.file&lt;/code&gt;.&lt;/dd&gt;
+  &lt;dt&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heading-img-local&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;To avoid relative URL prefixed by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.file&lt;/code&gt;, you can set this option to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt; to prefix it with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;amsf_user_assets&lt;/code&gt;, then you can store your images in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_app/assets/&lt;/code&gt;.&lt;/dd&gt;
+  &lt;dt&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heading-img-width&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;Set the width of your heading image. The value will be converted to viewport unit automatically. ie. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heading-img-width: 400&lt;/code&gt; will be converted to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;width: 40vw&lt;/code&gt;;&lt;/dd&gt;
 &lt;/dl&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Pro Tips&lt;/strong&gt;: Keep a &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;title&amp;gt;&lt;/code&gt; tag for your SVG can help Safari generate correct post title for its Reader mode:&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Pro Tips&lt;/strong&gt;: Keep a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;title&amp;gt;&lt;/code&gt; tag for your SVG can help Safari generate correct post title for its Reader mode:&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;svg&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2000/svg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
@@ -2211,19 +2211,19 @@ css: |
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;dl&gt;
-  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;heading-bg&lt;/code&gt;&lt;/dt&gt;
-  &lt;dd&gt;Background image filename, if a relative URL (non-external URL) is provided, the file will be prefixed with &lt;code class=&quot;highlighter-rouge&quot;&gt;site.file&lt;/code&gt;.&lt;/dd&gt;
-  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;heading-bg-local&lt;/code&gt;&lt;/dt&gt;
-  &lt;dd&gt;To avoid relative URL prefixed by &lt;code class=&quot;highlighter-rouge&quot;&gt;site.file&lt;/code&gt;, you can set this option to &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt; to prefix it with &lt;code class=&quot;highlighter-rouge&quot;&gt;amsf_user_assets&lt;/code&gt;, then you can store your images in &lt;code class=&quot;highlighter-rouge&quot;&gt;_app/assets/&lt;/code&gt;.&lt;/dd&gt;
-  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;heading-bg-color&lt;/code&gt;&lt;/dt&gt;
+  &lt;dt&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heading-bg&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;Background image filename, if a relative URL (non-external URL) is provided, the file will be prefixed with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.file&lt;/code&gt;.&lt;/dd&gt;
+  &lt;dt&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heading-bg-local&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;To avoid relative URL prefixed by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.file&lt;/code&gt;, you can set this option to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt; to prefix it with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;amsf_user_assets&lt;/code&gt;, then you can store your images in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_app/assets/&lt;/code&gt;.&lt;/dd&gt;
+  &lt;dt&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heading-bg-color&lt;/code&gt;&lt;/dt&gt;
   &lt;dd&gt;Background color, recommend setting its value matches your image color tone.&lt;/dd&gt;
-  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;heading-bg-size&lt;/code&gt;&lt;/dt&gt;
-  &lt;dd&gt;Background size, default value is &lt;code class=&quot;highlighter-rouge&quot;&gt;cover&lt;/code&gt;.&lt;/dd&gt;
-  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;heading-bg-position&lt;/code&gt;&lt;/dt&gt;
-  &lt;dd&gt;Background position, default value is &lt;code class=&quot;highlighter-rouge&quot;&gt;center center&lt;/code&gt;.&lt;/dd&gt;
-  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;heading-bg-repeat&lt;/code&gt;&lt;/dt&gt;
-  &lt;dd&gt;Background repeat, default value is &lt;code class=&quot;highlighter-rouge&quot;&gt;no-repeat&lt;/code&gt;.&lt;/dd&gt;
-  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;heading-bg-text&lt;/code&gt;&lt;/dt&gt;
+  &lt;dt&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heading-bg-size&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;Background size, default value is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cover&lt;/code&gt;.&lt;/dd&gt;
+  &lt;dt&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heading-bg-position&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;Background position, default value is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;center center&lt;/code&gt;.&lt;/dd&gt;
+  &lt;dt&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heading-bg-repeat&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;Background repeat, default value is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;no-repeat&lt;/code&gt;.&lt;/dd&gt;
+  &lt;dt&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heading-bg-text&lt;/code&gt;&lt;/dt&gt;
   &lt;dd&gt;Text color in heading, set it based on your background image.&lt;/dd&gt;
 &lt;/dl&gt;
 

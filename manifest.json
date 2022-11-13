@@ -1,6 +1,6 @@
 {
-  "name": "Karun",
-  "short_name": "Karun",
+  "name": "Almace Scaffolding",
+  "short_name": "AMSF",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#ff00b4",

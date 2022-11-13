@@ -14,7 +14,7 @@
   <meta charset="utf-8">
 
 
-<title>Themes - Karun</title>
+<title>Themes - Almace Scaffolding</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -50,7 +50,7 @@
 
 <!-- Open Graph and Twitter Cards support -->
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Karun">
+<meta property="og:site_name" content="Almace Scaffolding">
 <meta property="og:title" content="Themes">
 <meta property="og:url" content="http://0.0.0.0:4321/themes.html">
 <meta property="og:description" content="Overview In the latest build, I’ve added multiple themes support, finally, you can switch themes with just one command. This is an experimental feature and may change until the feature stabilizes. Installing Themes The AMSF framework ships a default theme...">
@@ -59,7 +59,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 
-  <meta name="twitter:site" content="@KRN_1">
+  <meta name="twitter:site" content="@sparanoid">
 
 
 
@@ -70,7 +70,7 @@
   <meta property="article:published_time" content="2014-06-10T00:00:00-07:00">
   <meta property="article:modified_time" content="2019-04-09T12:23:53-07:00">
   <meta name="twitter:label1" value="Words">
-  <meta name="twitter:data1" value="312 words">
+  <meta name="twitter:data1" value="321 words">
   <meta name="twitter:label2" value="Reading time">
   <meta name="twitter:data2" value="1 min">
 
@@ -85,6 +85,15 @@
 
     
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-color-l: 95%;
+      --bg-color-l: 14%;
+      --bg-color-s: 2%;
+      --code-color-l: calc(var(--link-color-l) * 1.3);
+    }
+  }
+  
 
   body {
     
@@ -98,7 +107,7 @@
 <nav class="navigation">
   <ul>
     <li >
-        <a href="/">Karun</a>
+        <a href="/">Almace Scaffolding</a>
       </li>
     <li >
         <a href="/blog/">Blog</a>
@@ -149,21 +158,21 @@
 
 <h3 id="via-git-github">Via Git (GitHub)</h3>
 
-<p>The easiest way to install new theme is via <code class="highlighter-rouge">theme-add</code>, the following command will install theme Curtana from its official repo <code class="highlighter-rouge">amsf/amsf-curtana</code>:</p>
+<p>The easiest way to install new theme is via <code class="language-plaintext highlighter-rouge">theme-add</code>, the following command will install theme Curtana from its official repo <code class="language-plaintext highlighter-rouge">amsf/amsf-curtana</code>:</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>grunt theme-add <span class="nt">--theme</span><span class="o">=</span>curtana
 </code></pre></div></div>
 
-<p>If you’d install custom theme from other users, append <code class="highlighter-rouge">--user</code> in your command, the following command will install a new theme named <code class="highlighter-rouge">bootstrap-sass</code> from <code class="highlighter-rouge">sparanoid/amsf-bootstrap-sass</code></p>
+<p>If you’d install custom theme from other users, append <code class="language-plaintext highlighter-rouge">--user</code> in your command, the following command will install a new theme named <code class="language-plaintext highlighter-rouge">bootstrap-sass</code> from <code class="language-plaintext highlighter-rouge">sparanoid/amsf-bootstrap-sass</code></p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>grunt theme-add <span class="nt">--theme</span><span class="o">=</span>bootstrap-sass <span class="nt">--user</span><span class="o">=</span>sparanoid
 </code></pre></div></div>
 
 <h3 id="manually-install">Manually Install</h3>
 
-<p>You can also install themes manually. find an AMSF theme (Curtana, for example), download the package and uncompress all files to <code class="highlighter-rouge">.amsf-cache/themes</code> directory, the file structure should look like:</p>
+<p>You can also install themes manually. find an AMSF theme (Curtana, for example), download the package and uncompress all files to <code class="language-plaintext highlighter-rouge">.amsf-cache/themes</code> directory, the file structure should look like:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── .amsf-cache/ (Almace Scaffolding cache directory)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── .amsf-cache/ (Almace Scaffolding cache directory)
 |   ├── themes/
 |   |   └── curtana/
 |   |   |   └── assets/
@@ -179,7 +188,7 @@
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>grunt activate <span class="nt">--theme</span><span class="o">=</span>curtana
 </code></pre></div></div>
 
-<p>You current theme will be backed up to <code class="highlighter-rouge">.amsf-cache/themes/your-old-theme/</code> and the new theme <code class="highlighter-rouge">curtana</code> will be installed to the appropriate directories.</p>
+<p>You current theme will be backed up to <code class="language-plaintext highlighter-rouge">.amsf-cache/themes/your-old-theme/</code> and the new theme <code class="language-plaintext highlighter-rouge">curtana</code> will be installed to the appropriate directories.</p>
 
 <h2 id="upgrading-themes">Upgrading Themes</h2>
 
@@ -204,8 +213,12 @@
 
   <footer class="footer">
     <ul>
-      <li><a href="/">Karun</a></li>
+      <li><a href="/">Almace Scaffolding</a></li>
 
+      
+        <li>
+          <a href="https://sparanoid.com/lab/amsf/" title="Almace Scaffolding with theme Curtana">AMSF</a>
+        </li>
       
 
       
@@ -226,13 +239,7 @@
 
 
 <!-- Google Analytics -->
-<script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-155029813-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src="https://www.google-analytics.com/analytics.js"></script>
+
 
 <!-- Foot hooks -->
 

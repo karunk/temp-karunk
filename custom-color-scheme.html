@@ -14,7 +14,7 @@
   <meta charset="utf-8">
 
 
-<title>Custom Color Scheme - Karun</title>
+<title>Custom Color Scheme - Almace Scaffolding</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -50,7 +50,7 @@
 
 <!-- Open Graph and Twitter Cards support -->
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Karun">
+<meta property="og:site_name" content="Almace Scaffolding">
 <meta property="og:title" content="Custom Color Scheme">
 <meta property="og:url" content="http://0.0.0.0:4321/custom-color-scheme.html">
 <meta property="og:description" content="This is an example how to change your post color scheme for specific posts. You can simply add the following variables to your post front-matter field: scheme-text: &quot;#0029ff&quot; scheme-link: &quot;#ff00b4&quot; scheme-hover: &quot;#ff00b4&quot; scheme-code: &quot;#ad00ff&quot; scheme-bg: &...">
@@ -59,7 +59,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 
-  <meta name="twitter:site" content="@KRN_1">
+  <meta name="twitter:site" content="@sparanoid">
 
 
 
@@ -70,7 +70,7 @@
   <meta property="article:published_time" content="2014-05-01T00:00:00-07:00">
   <meta property="article:modified_time" content="2019-04-09T12:23:53-07:00">
   <meta name="twitter:label1" value="Words">
-  <meta name="twitter:data1" value="67 words">
+  <meta name="twitter:data1" value="69 words">
   <meta name="twitter:label2" value="Reading time">
   <meta name="twitter:data2" value="Less than 1 min">
 
@@ -93,6 +93,15 @@
     --code-color: #ad00ff;
     
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-color-l: 95%;
+      --bg-color-l: 14%;
+      --bg-color-s: 2%;
+      --code-color-l: calc(var(--link-color-l) * 1.3);
+    }
+  }
+  
 
   body {
     
@@ -121,7 +130,7 @@
 <nav class="navigation">
   <ul>
     <li >
-        <a href="/">Karun</a>
+        <a href="/">Almace Scaffolding</a>
       </li>
     <li >
         <a href="/blog/">Blog</a>
@@ -162,7 +171,7 @@
   <div class="post-content">
     <p>This is an example how to change your post color scheme for specific posts. You can simply add the following variables to your post <a href="https://jekyllrb.com/docs/frontmatter/">front-matter field</a>:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scheme-text: "#0029ff"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scheme-text: "#0029ff"
 scheme-link: "#ff00b4"
 scheme-hover: "#ff00b4"
 scheme-code: "#ad00ff"
@@ -174,7 +183,7 @@ scheme-hero-bg: "#0029ff"
 
 <p>You can also ignore other variables if you only want to change the background:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scheme-bg: "#00ebff"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scheme-bg: "#00ebff"
 </code></pre></div></div>
 
 
@@ -191,8 +200,12 @@ scheme-hero-bg: "#0029ff"
 
   <footer class="footer">
     <ul>
-      <li><a href="/">Karun</a></li>
+      <li><a href="/">Almace Scaffolding</a></li>
 
+      
+        <li>
+          <a href="https://sparanoid.com/lab/amsf/" title="Almace Scaffolding with theme Curtana">AMSF</a>
+        </li>
       
 
       
@@ -213,13 +226,7 @@ scheme-hero-bg: "#0029ff"
 
 
 <!-- Google Analytics -->
-<script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-155029813-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src="https://www.google-analytics.com/analytics.js"></script>
+
 
 <!-- Foot hooks -->
 

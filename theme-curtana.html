@@ -14,7 +14,7 @@
   <meta charset="utf-8">
 
 
-<title>Introducing Curtana - Karun</title>
+<title>Introducing Curtana - Almace Scaffolding</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -50,7 +50,7 @@
 
 <!-- Open Graph and Twitter Cards support -->
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Karun">
+<meta property="og:site_name" content="Almace Scaffolding">
 <meta property="og:title" content="Introducing Curtana">
 <meta property="og:url" content="http://0.0.0.0:4321/theme-curtana.html">
 <meta property="og:description" content="Curtana is the default theme of AMSF (Almace Scaffolding). Features A variant of sparanoid.com, looking great on any modern browsers Minimalism design, No jQuery, no everybody-shake-ur-body.js Ideal for personal blog, portfolio, product blog and Tumblr-like link blog (Maybe) the first...">
@@ -59,7 +59,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 
-  <meta name="twitter:site" content="@KRN_1">
+  <meta name="twitter:site" content="@sparanoid">
 
 
 
@@ -70,7 +70,7 @@
   <meta property="article:published_time" content="2016-06-01T00:00:00-07:00">
   <meta property="article:modified_time" content="2019-04-09T12:23:53-07:00">
   <meta name="twitter:label1" value="Words">
-  <meta name="twitter:data1" value="106 words">
+  <meta name="twitter:data1" value="107 words">
   <meta name="twitter:label2" value="Reading time">
   <meta name="twitter:data2" value="Less than 1 min">
 
@@ -85,6 +85,15 @@
 
     
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-color-l: 95%;
+      --bg-color-l: 14%;
+      --bg-color-s: 2%;
+      --code-color-l: calc(var(--link-color-l) * 1.3);
+    }
+  }
+  
 
   body {
     
@@ -98,7 +107,7 @@
 <nav class="navigation">
   <ul>
     <li >
-        <a href="/">Karun</a>
+        <a href="/">Almace Scaffolding</a>
       </li>
     <li >
         <a href="/blog/">Blog</a>
@@ -143,7 +152,7 @@
 
 <ul>
   <li>A variant of <a href="https://sparanoid.com/">sparanoid.com</a>, looking great on any modern browsers</li>
-  <li>Minimalism design, No jQuery, no <code class="highlighter-rouge">everybody-shake-ur-body.js</code></li>
+  <li>Minimalism design, No jQuery, no <code class="language-plaintext highlighter-rouge">everybody-shake-ur-body.js</code></li>
   <li>Ideal for personal blog, portfolio, product blog and Tumblr-like link blog</li>
   <li>(Maybe) <a href="https://github.com/sparanoid/sparanoid.com/commit/9b44b4c0f57c3dd1e828d828a95cc21b992785ce">the first</a> template that uses <a href="https://www.w3.org/TR/css3-values/#viewport-relative-lengths">viewport relative units</a></li>
   <li>Handcrafted stylesheets. No Bootstrap or other bloated frameworks are used, unminified CSS &lt; 12 KB</li>
@@ -167,8 +176,12 @@
 
   <footer class="footer">
     <ul>
-      <li><a href="/">Karun</a></li>
+      <li><a href="/">Almace Scaffolding</a></li>
 
+      
+        <li>
+          <a href="https://sparanoid.com/lab/amsf/" title="Almace Scaffolding with theme Curtana">AMSF</a>
+        </li>
       
 
       
@@ -189,13 +202,7 @@
 
 
 <!-- Google Analytics -->
-<script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-155029813-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src="https://www.google-analytics.com/analytics.js"></script>
+
 
 <!-- Foot hooks -->
 

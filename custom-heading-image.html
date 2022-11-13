@@ -14,7 +14,7 @@
   <meta charset="utf-8">
 
 
-<title>Custom Heading Image - Karun</title>
+<title>Custom Heading Image - Almace Scaffolding</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -50,7 +50,7 @@
 
 <!-- Open Graph and Twitter Cards support -->
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Karun">
+<meta property="og:site_name" content="Almace Scaffolding">
 <meta property="og:title" content="Custom Heading Image">
 <meta property="og:url" content="http://0.0.0.0:4321/custom-heading-image.html">
 <meta property="og:description" content="This is an example of custom post heading image. You can simply add the following setting to your post front-matter field: heading-img: svg/heading-image.svg heading-img-local: true heading-img-width: 400 In Almace Scaffolding v1.1.0, the original svg-headline*, and img-headline* options are depr...">
@@ -59,7 +59,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 
-  <meta name="twitter:site" content="@KRN_1">
+  <meta name="twitter:site" content="@sparanoid">
 
 
 
@@ -70,7 +70,7 @@
   <meta property="article:published_time" content="2014-02-01T00:00:00-08:00">
   <meta property="article:modified_time" content="2019-04-09T12:23:53-07:00">
   <meta name="twitter:label1" value="Words">
-  <meta name="twitter:data1" value="182 words">
+  <meta name="twitter:data1" value="195 words">
   <meta name="twitter:label2" value="Reading time">
   <meta name="twitter:data2" value="Less than 1 min">
 
@@ -85,6 +85,15 @@
 
     
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-color-l: 95%;
+      --bg-color-l: 14%;
+      --bg-color-s: 2%;
+      --code-color-l: calc(var(--link-color-l) * 1.3);
+    }
+  }
+  
 
   body {
     
@@ -98,7 +107,7 @@
 <nav class="navigation">
   <ul>
     <li >
-        <a href="/">Karun</a>
+        <a href="/">Almace Scaffolding</a>
       </li>
     <li >
         <a href="/blog/">Blog</a>
@@ -147,20 +156,20 @@
 </code></pre></div></div>
 
 <blockquote>
-  <p>In Almace Scaffolding v1.1.0, the original <code class="highlighter-rouge">svg-headline*</code>, and <code class="highlighter-rouge">img-headline*</code> options are deprecated.</p>
+  <p>In Almace Scaffolding v1.1.0, the original <code class="language-plaintext highlighter-rouge">svg-headline*</code>, and <code class="language-plaintext highlighter-rouge">img-headline*</code> options are deprecated.</p>
 </blockquote>
 
 <dl>
-  <dt><code class="highlighter-rouge">heading-img</code></dt>
-  <dd>Heading image filename, if a relative URL (non-external URL) is provided, the file will be prefixed with <code class="highlighter-rouge">site.file</code>.</dd>
-  <dt><code class="highlighter-rouge">heading-img-local</code></dt>
-  <dd>To avoid relative URL prefixed by <code class="highlighter-rouge">site.file</code>, you can set this option to <code class="highlighter-rouge">true</code> to prefix it with <code class="highlighter-rouge">amsf_user_assets</code>, then you can store your images in <code class="highlighter-rouge">_app/assets/</code>.</dd>
-  <dt><code class="highlighter-rouge">heading-img-width</code></dt>
-  <dd>Set the width of your heading image. The value will be converted to viewport unit automatically. ie. <code class="highlighter-rouge">heading-img-width: 400</code> will be converted to <code class="highlighter-rouge">width: 40vw</code>;</dd>
+  <dt><code class="language-plaintext highlighter-rouge">heading-img</code></dt>
+  <dd>Heading image filename, if a relative URL (non-external URL) is provided, the file will be prefixed with <code class="language-plaintext highlighter-rouge">site.file</code>.</dd>
+  <dt><code class="language-plaintext highlighter-rouge">heading-img-local</code></dt>
+  <dd>To avoid relative URL prefixed by <code class="language-plaintext highlighter-rouge">site.file</code>, you can set this option to <code class="language-plaintext highlighter-rouge">true</code> to prefix it with <code class="language-plaintext highlighter-rouge">amsf_user_assets</code>, then you can store your images in <code class="language-plaintext highlighter-rouge">_app/assets/</code>.</dd>
+  <dt><code class="language-plaintext highlighter-rouge">heading-img-width</code></dt>
+  <dd>Set the width of your heading image. The value will be converted to viewport unit automatically. ie. <code class="language-plaintext highlighter-rouge">heading-img-width: 400</code> will be converted to <code class="language-plaintext highlighter-rouge">width: 40vw</code>;</dd>
 </dl>
 
 <blockquote>
-  <p><strong>Pro Tips</strong>: Keep a <code class="highlighter-rouge">&lt;title&gt;</code> tag for your SVG can help Safari generate correct post title for its Reader mode:</p>
+  <p><strong>Pro Tips</strong>: Keep a <code class="language-plaintext highlighter-rouge">&lt;title&gt;</code> tag for your SVG can help Safari generate correct post title for its Reader mode:</p>
 </blockquote>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span><span class="nt">&gt;</span>
@@ -182,8 +191,12 @@
 
   <footer class="footer">
     <ul>
-      <li><a href="/">Karun</a></li>
+      <li><a href="/">Almace Scaffolding</a></li>
 
+      
+        <li>
+          <a href="https://sparanoid.com/lab/amsf/" title="Almace Scaffolding with theme Curtana">AMSF</a>
+        </li>
       
 
       
@@ -204,13 +217,7 @@
 
 
 <!-- Google Analytics -->
-<script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-155029813-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src="https://www.google-analytics.com/analytics.js"></script>
+
 
 <!-- Foot hooks -->
 

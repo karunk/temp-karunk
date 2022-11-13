@@ -14,7 +14,7 @@
   <meta charset="utf-8">
 
 
-<title>Deployment Methods - Karun</title>
+<title>Deployment Methods - Almace Scaffolding</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -50,7 +50,7 @@
 
 <!-- Open Graph and Twitter Cards support -->
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Karun">
+<meta property="og:site_name" content="Almace Scaffolding">
 <meta property="og:title" content="Deployment Methods">
 <meta property="og:url" content="http://0.0.0.0:4321/deployment-methods.html">
 <meta property="og:description" content="Sites generated using Almace Scaffolding can be deployed in nearly any web hosting services. A few of the most common deployment techniques are described below. More deployment methods please refer to Jekyll - Deployment methods. Web Hosting Providers (FTP/SFTP) Just...">
@@ -59,7 +59,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 
-  <meta name="twitter:site" content="@KRN_1">
+  <meta name="twitter:site" content="@sparanoid">
 
 
 
@@ -70,7 +70,7 @@
   <meta property="article:published_time" content="2016-03-18T00:00:00-07:00">
   <meta property="article:modified_time" content="2019-04-11T14:55:02-07:00">
   <meta name="twitter:label1" value="Words">
-  <meta name="twitter:data1" value="181 words">
+  <meta name="twitter:data1" value="189 words">
   <meta name="twitter:label2" value="Reading time">
   <meta name="twitter:data2" value="Less than 1 min">
 
@@ -85,6 +85,15 @@
 
     
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-color-l: 95%;
+      --bg-color-l: 14%;
+      --bg-color-s: 2%;
+      --code-color-l: calc(var(--link-color-l) * 1.3);
+    }
+  }
+  
 
   body {
     
@@ -98,7 +107,7 @@
 <nav class="navigation">
   <ul>
     <li >
-        <a href="/">Karun</a>
+        <a href="/">Almace Scaffolding</a>
       </li>
     <li >
         <a href="/blog/">Blog</a>
@@ -141,23 +150,23 @@
 
 <h2 id="web-hosting-providers-ftpsftp">Web Hosting Providers (FTP/SFTP)</h2>
 
-<p>Just about any traditional web hosting provider will let you upload files to their servers over FTP. You can simply run the <code class="highlighter-rouge">grunt build</code> command and upload all files generated under <code class="highlighter-rouge">_site</code> to the HTTP root folder of your hosting account.</p>
+<p>Just about any traditional web hosting provider will let you upload files to their servers over FTP. You can simply run the <code class="language-plaintext highlighter-rouge">grunt build</code> command and upload all files generated under <code class="language-plaintext highlighter-rouge">_site</code> to the HTTP root folder of your hosting account.</p>
 
 <h2 id="rsync">rsync</h2>
 
-<p>There’s a <code class="highlighter-rouge">_deploy.yml</code> at the root of your AMSF project containing a basic <code class="highlighter-rouge">rsync</code> configurations. Change these configurations to yours and then run:</p>
+<p>There’s a <code class="language-plaintext highlighter-rouge">_deploy.yml</code> at the root of your AMSF project containing a basic <code class="language-plaintext highlighter-rouge">rsync</code> configurations. Change these configurations to yours and then run:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>grunt deploy:rsync
 </code></pre></div></div>
 
-<p>You can deploy it for specific environment, the following command will deploy your site to <code class="highlighter-rouge">beta</code> environment via <code class="highlighter-rouge">rsync</code> method you defined in <code class="highlighter-rouge">_deploy.yml</code>:</p>
+<p>You can deploy it for specific environment, the following command will deploy your site to <code class="language-plaintext highlighter-rouge">beta</code> environment via <code class="language-plaintext highlighter-rouge">rsync</code> method you defined in <code class="language-plaintext highlighter-rouge">_deploy.yml</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>grunt deploy:rsync <span class="nt">--env</span><span class="o">=</span>beta
 </code></pre></div></div>
 
 <h2 id="amazon-s3-s3_website">Amazon S3 (s3_website)</h2>
 
-<p>You can also deploy your site to Amazon S3 via <a href="https://github.com/laurilehmijoki/s3_website">s3_website</a>, see <code class="highlighter-rouge">s3_website.example.yml</code> for more info.</p>
+<p>You can also deploy your site to Amazon S3 via <a href="https://github.com/laurilehmijoki/s3_website">s3_website</a>, see <code class="language-plaintext highlighter-rouge">s3_website.example.yml</code> for more info.</p>
 
 
     
@@ -173,8 +182,12 @@
 
   <footer class="footer">
     <ul>
-      <li><a href="/">Karun</a></li>
+      <li><a href="/">Almace Scaffolding</a></li>
 
+      
+        <li>
+          <a href="https://sparanoid.com/lab/amsf/" title="Almace Scaffolding with theme Curtana">AMSF</a>
+        </li>
       
 
       
@@ -195,13 +208,7 @@
 
 
 <!-- Google Analytics -->
-<script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-155029813-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src="https://www.google-analytics.com/analytics.js"></script>
+
 
 <!-- Foot hooks -->
 

@@ -14,7 +14,7 @@
   <meta charset="utf-8">
 
 
-<title>Custom HTML Markups - Karun</title>
+<title>Custom HTML Markups - Almace Scaffolding</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -50,7 +50,7 @@
 
 <!-- Open Graph and Twitter Cards support -->
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Karun">
+<meta property="og:site_name" content="Almace Scaffolding">
 <meta property="og:title" content="Custom HTML Markups">
 <meta property="og:url" content="http://0.0.0.0:4321/custom-html-markups.html">
 <meta property="og:description" content=".note, .store, and .download A paragraph block with a thin border line. Usage [Download](download) it from GitHub {: .download} Love this plugin? please consider [buying me a cup of coffee](donate). {: .store} Example Download it from GitHub Love this plugin?...">
@@ -59,7 +59,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 
-  <meta name="twitter:site" content="@KRN_1">
+  <meta name="twitter:site" content="@sparanoid">
 
 
 
@@ -70,7 +70,7 @@
   <meta property="article:published_time" content="2014-06-01T00:00:00-07:00">
   <meta property="article:modified_time" content="2019-04-09T12:23:53-07:00">
   <meta name="twitter:label1" value="Words">
-  <meta name="twitter:data1" value="487 words">
+  <meta name="twitter:data1" value="498 words">
   <meta name="twitter:label2" value="Reading time">
   <meta name="twitter:data2" value="2 mins">
 
@@ -85,6 +85,15 @@
 
     
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-color-l: 95%;
+      --bg-color-l: 14%;
+      --bg-color-s: 2%;
+      --code-color-l: calc(var(--link-color-l) * 1.3);
+    }
+  }
+  
 
   body {
     
@@ -98,7 +107,7 @@
 <nav class="navigation">
   <ul>
     <li >
-        <a href="/">Karun</a>
+        <a href="/">Almace Scaffolding</a>
       </li>
     <li >
         <a href="/blog/">Blog</a>
@@ -137,7 +146,7 @@
 
   <!-- Post content -->
   <div class="post-content">
-    <h2 id="note-store-and-download"><code class="highlighter-rouge">.note</code>, <code class="highlighter-rouge">.store</code>, and <code class="highlighter-rouge">.download</code></h2>
+    <h2 id="note-store-and-download"><code class="language-plaintext highlighter-rouge">.note</code>, <code class="language-plaintext highlighter-rouge">.store</code>, and <code class="language-plaintext highlighter-rouge">.download</code></h2>
 
 <p>A paragraph block with a thin border line.</p>
 
@@ -156,7 +165,7 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 
 <p class="store">Love this plugin? please consider buying me a cup of coffee.</p>
 
-<h2 id="largetype"><code class="highlighter-rouge">.largetype</code></h2>
+<h2 id="largetype"><code class="language-plaintext highlighter-rouge">.largetype</code></h2>
 
 <p>Make normal paragraph text large enough.</p>
 
@@ -170,7 +179,7 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 
 <p class="largetype"><a href="https://sparanoid.com/donate/">PayPal</a></p>
 
-<h2 id="browser"><code class="highlighter-rouge">.browser</code></h2>
+<h2 id="browser"><code class="language-plaintext highlighter-rouge">.browser</code></h2>
 
 <p>A simple browser frame using pure CSS.</p>
 
@@ -192,7 +201,7 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 
 <p>Add the following setting to your post <a href="https://jekyllrb.com/docs/frontmatter/">front-matter field</a>:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugin: lightense
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugin: lightense
 </code></pre></div></div>
 
 <p>Markdown markup:</p>
@@ -200,12 +209,12 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 <div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">Image</span><span class="p">](</span><span class="sx">https://sparanoid.com/photo.jpg</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Lightense Images is activated globally by default, if you want to disable this effect for specific image, you can simply apply <code class="highlighter-rouge">.no-lightense</code> CSS class to your image or <code class="highlighter-rouge">&lt;img&gt;</code>:</p>
+<p>Lightense Images is activated globally by default, if you want to disable this effect for specific image, you can simply apply <code class="language-plaintext highlighter-rouge">.no-lightense</code> CSS class to your image or <code class="language-plaintext highlighter-rouge">&lt;img&gt;</code>:</p>
 
 <div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">Image</span><span class="p">](</span><span class="sx">https://sparanoid.com/logo.png</span><span class="p">)</span>{: .no-lightense}
 </code></pre></div></div>
 
-<p>Please note that if you’re using HTML markup, you should wrap your images into a <code class="highlighter-rouge">&lt;p&gt;</code> container.</p>
+<p>Please note that if you’re using HTML markup, you should wrap your images into a <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> container.</p>
 
 <h3 id="example-3">Example</h3>
 
@@ -247,7 +256,7 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 
 <p><img src="https://s3.amazonaws.com/sparanoid/moonstruck-princess-ext-blue.jpg" alt="Moonstruck Princess Extended - Blue" class="size-left" /></p>
 
-<p>Aligned images are smaller images beside text, you can just apply <code class="highlighter-rouge">.size-left</code> or <code class="highlighter-rouge">.size-right</code> to your images and nothing special markup required. However that aligned images will be responded to normal large size for small desktops or mobile devices.</p>
+<p>Aligned images are smaller images beside text, you can just apply <code class="language-plaintext highlighter-rouge">.size-left</code> or <code class="language-plaintext highlighter-rouge">.size-right</code> to your images and nothing special markup required. However that aligned images will be responded to normal large size for small desktops or mobile devices.</p>
 
 <h3 id="small-images">Small Images</h3>
 
@@ -279,8 +288,12 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 
   <footer class="footer">
     <ul>
-      <li><a href="/">Karun</a></li>
+      <li><a href="/">Almace Scaffolding</a></li>
 
+      
+        <li>
+          <a href="https://sparanoid.com/lab/amsf/" title="Almace Scaffolding with theme Curtana">AMSF</a>
+        </li>
       
 
       
@@ -308,13 +321,7 @@ Love this plugin? please consider <span class="p">[</span><span class="nv">buyin
 
 
 <!-- Google Analytics -->
-<script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-155029813-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src="https://www.google-analytics.com/analytics.js"></script>
+
 
 <!-- Foot hooks -->
 

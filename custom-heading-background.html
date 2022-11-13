@@ -14,7 +14,7 @@
   <meta charset="utf-8">
 
 
-<title>Custom Heading Background - Karun</title>
+<title>Custom Heading Background - Almace Scaffolding</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -50,7 +50,7 @@
 
 <!-- Open Graph and Twitter Cards support -->
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Karun">
+<meta property="og:site_name" content="Almace Scaffolding">
 <meta property="og:title" content="Custom Heading Background">
 <meta property="og:url" content="http://0.0.0.0:4321/custom-heading-background.html">
 <meta property="og:description" content="This is an example of custom heading background. You can simply add the following setting to your post front-matter field: heading-bg: img/heading-background.jpg heading-bg-local: true heading-bg-color: &quot;#8141b1&quot; heading-bg-size: &quot;100px 100px&quot; heading-bg-position: &quot;center...">
@@ -59,7 +59,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 
-  <meta name="twitter:site" content="@KRN_1">
+  <meta name="twitter:site" content="@sparanoid">
 
 
 
@@ -70,9 +70,9 @@
   <meta property="article:published_time" content="2014-02-01T00:00:00-08:00">
   <meta property="article:modified_time" content="2019-04-09T12:23:53-07:00">
   <meta name="twitter:label1" value="Words">
-  <meta name="twitter:data1" value="191 words">
+  <meta name="twitter:data1" value="206 words">
   <meta name="twitter:label2" value="Reading time">
-  <meta name="twitter:data2" value="Less than 1 min">
+  <meta name="twitter:data2" value="1 min">
 
 <!-- Post specified styles -->
 <style data-assets-inline>
@@ -85,6 +85,15 @@
 
     
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-color-l: 95%;
+      --bg-color-l: 14%;
+      --bg-color-s: 2%;
+      --code-color-l: calc(var(--link-color-l) * 1.3);
+    }
+  }
+  
 
   body {
     
@@ -98,7 +107,7 @@
 <nav class="navigation">
   <ul>
     <li >
-        <a href="/">Karun</a>
+        <a href="/">Almace Scaffolding</a>
       </li>
     <li >
         <a href="/blog/">Blog</a>
@@ -149,19 +158,19 @@
 </code></pre></div></div>
 
 <dl>
-  <dt><code class="highlighter-rouge">heading-bg</code></dt>
-  <dd>Background image filename, if a relative URL (non-external URL) is provided, the file will be prefixed with <code class="highlighter-rouge">site.file</code>.</dd>
-  <dt><code class="highlighter-rouge">heading-bg-local</code></dt>
-  <dd>To avoid relative URL prefixed by <code class="highlighter-rouge">site.file</code>, you can set this option to <code class="highlighter-rouge">true</code> to prefix it with <code class="highlighter-rouge">amsf_user_assets</code>, then you can store your images in <code class="highlighter-rouge">_app/assets/</code>.</dd>
-  <dt><code class="highlighter-rouge">heading-bg-color</code></dt>
+  <dt><code class="language-plaintext highlighter-rouge">heading-bg</code></dt>
+  <dd>Background image filename, if a relative URL (non-external URL) is provided, the file will be prefixed with <code class="language-plaintext highlighter-rouge">site.file</code>.</dd>
+  <dt><code class="language-plaintext highlighter-rouge">heading-bg-local</code></dt>
+  <dd>To avoid relative URL prefixed by <code class="language-plaintext highlighter-rouge">site.file</code>, you can set this option to <code class="language-plaintext highlighter-rouge">true</code> to prefix it with <code class="language-plaintext highlighter-rouge">amsf_user_assets</code>, then you can store your images in <code class="language-plaintext highlighter-rouge">_app/assets/</code>.</dd>
+  <dt><code class="language-plaintext highlighter-rouge">heading-bg-color</code></dt>
   <dd>Background color, recommend setting its value matches your image color tone.</dd>
-  <dt><code class="highlighter-rouge">heading-bg-size</code></dt>
-  <dd>Background size, default value is <code class="highlighter-rouge">cover</code>.</dd>
-  <dt><code class="highlighter-rouge">heading-bg-position</code></dt>
-  <dd>Background position, default value is <code class="highlighter-rouge">center center</code>.</dd>
-  <dt><code class="highlighter-rouge">heading-bg-repeat</code></dt>
-  <dd>Background repeat, default value is <code class="highlighter-rouge">no-repeat</code>.</dd>
-  <dt><code class="highlighter-rouge">heading-bg-text</code></dt>
+  <dt><code class="language-plaintext highlighter-rouge">heading-bg-size</code></dt>
+  <dd>Background size, default value is <code class="language-plaintext highlighter-rouge">cover</code>.</dd>
+  <dt><code class="language-plaintext highlighter-rouge">heading-bg-position</code></dt>
+  <dd>Background position, default value is <code class="language-plaintext highlighter-rouge">center center</code>.</dd>
+  <dt><code class="language-plaintext highlighter-rouge">heading-bg-repeat</code></dt>
+  <dd>Background repeat, default value is <code class="language-plaintext highlighter-rouge">no-repeat</code>.</dd>
+  <dt><code class="language-plaintext highlighter-rouge">heading-bg-text</code></dt>
   <dd>Text color in heading, set it based on your background image.</dd>
 </dl>
 
@@ -184,8 +193,12 @@
 
   <footer class="footer">
     <ul>
-      <li><a href="/">Karun</a></li>
+      <li><a href="/">Almace Scaffolding</a></li>
 
+      
+        <li>
+          <a href="https://sparanoid.com/lab/amsf/" title="Almace Scaffolding with theme Curtana">AMSF</a>
+        </li>
       
 
       
@@ -206,13 +219,7 @@
 
 
 <!-- Google Analytics -->
-<script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-155029813-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src="https://www.google-analytics.com/analytics.js"></script>
+
 
 <!-- Foot hooks -->
 
