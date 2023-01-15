@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Karun Vinayagam</title>
   <subtitle>Karun - Software Engineer</subtitle>
-  <updated>2022-11-13T12:57:54-08:00</updated>
+  <updated>2023-01-14T14:57:46-08:00</updated>
   <id>http://0.0.0.0:4321/</id>
   <generator uri="https://sparanoid.com/lab/amsf/" version="2.0.18">Almace Scaffolding</generator>
 
@@ -14,6 +14,45 @@
     <email>mail@vkarun.me</email>
   </author>
 
+  
+    
+      
+
+      
+
+      <entry>
+        <title>Profiling Rails Applications With Flame Graphs</title>
+        <id>http://0.0.0.0:4321/profiling-rails-applications-with-flame-graphs.html</id>
+        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/profiling-rails-applications-with-flame-graphs.html" />
+        <published>2023-01-14T00:00:00-08:00</published>
+
+        
+          <updated>2023-01-14T14:56:43-08:00</updated>
+        
+
+        <author>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
+        </author>
+
+        <content type="html" xml:base="http://0.0.0.0:4321/">
+          
+            
+
+          
+          
+        
+          &lt;p&gt;&lt;a href=&quot;https://deliveroo.engineering/2022/11/21/profiling-rails-application-code-via-flame-graph.html&quot;&gt;&lt;small&gt;◉ Direct Link to Original Site&lt;/small&gt;&lt;/a&gt;&lt;/p&gt;
+        
+      
+        </content>
+
+        
+          <summary></summary>
+        
+      </entry>
+    
   
     
       

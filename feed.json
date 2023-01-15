@@ -4,6 +4,30 @@
   
     
     {
+      "title": "Profiling Rails Applications With Flame Graphs",
+      "permalink": "http://0.0.0.0:4321/profiling-rails-applications-with-flame-graphs.html",
+      "link": "http://0.0.0.0:4321/profiling-rails-applications-with-flame-graphs.html",
+      "date": "2023-01-14T00:00:00-08:00",
+      
+        "modified": "2023-01-14T14:56:43-08:00",
+      
+      "author": {
+        "name": "Karun Kalaivanan Vinayagam",
+        "url": "http://vkarun.me/",
+        "email": "mail@vkarun.me"
+      },
+      "content": "",
+      "excerpt": "",
+      "languages": null,
+      "categories": ["news"],
+      "tags": ["deployment"]
+    }
+    
+  
+
+  
+    ,
+    {
       "title": "Rolling deployments and fingerprintng",
       "permalink": "http://0.0.0.0:4321/rolling-deployments-and-fingerprinting.html",
       "link": "http://0.0.0.0:4321/rolling-deployments-and-fingerprinting.html",
