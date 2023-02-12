@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Karun Vinayagam</title>
   <subtitle>Karun - Software Engineer</subtitle>
-  <updated>2023-02-12T02:57:17-08:00</updated>
+  <updated>2023-02-12T14:07:18-08:00</updated>
   <id>http://0.0.0.0:4321/</id>
   <generator uri="https://sparanoid.com/lab/amsf/" version="2.0.18">Almace Scaffolding</generator>
 
@@ -23,11 +23,11 @@
       <entry>
         <title>Profiling Rails Applications With Flame Graphs</title>
         <id>http://0.0.0.0:4321/profiling-rails-applications-with-flame-graphs.html</id>
-        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/profiling-rails-applications-with-flame-graphs.html" />
+        <link rel="alternate" type="text/html" href="https://deliveroo.engineering/2022/11/21/profiling-rails-application-code-via-flame-graph.html" />
         <published>2023-01-14T00:00:00-08:00</published>
 
         
-          <updated>2023-02-12T02:56:27-08:00</updated>
+          <updated>2023-02-12T03:02:46-08:00</updated>
         
 
         <author>
@@ -43,7 +43,7 @@
           
           
         
-          &lt;p&gt;&lt;a href=&quot;https://deliveroo.engineering/2022/11/21/profiling-rails-application-code-via-flame-graph.html&quot;&gt;&lt;small&gt;◉ Direct Link to Original Site&lt;/small&gt;&lt;/a&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;a href=&quot;http://0.0.0.0:4321/profiling-rails-applications-with-flame-graphs.html&quot; title=&quot;Permalink to “Profiling Rails Applications With Flame Graphs”&quot;&gt;&lt;small&gt;◉ Permalink&lt;/small&gt;&lt;/a&gt;&lt;/p&gt;
         
       
         </content>
@@ -66,7 +66,7 @@
         <published>2020-07-25T00:00:00-07:00</published>
 
         
-          <updated>2023-02-12T02:56:27-08:00</updated>
+          <updated>2023-02-12T03:02:46-08:00</updated>
         
 
         <author>
@@ -161,7 +161,7 @@ common-819894348394.js
       <entry>
         <title>Welcome</title>
         <id>http://0.0.0.0:4321/welcome.html</id>
-        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/welcome.html" />
+        <link rel="alternate" type="text/html" href="https://wordpress.org/plugins/slimpack/" />
         <published>2019-12-04T00:00:00-08:00</published>
 
         
@@ -200,7 +200,7 @@ common-819894348394.js
           
           
         
-          &lt;p&gt;&lt;a href=&quot;https://wordpress.org/plugins/slimpack/&quot;&gt;&lt;small&gt;◉ Direct Link to Original Site&lt;/small&gt;&lt;/a&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;a href=&quot;http://0.0.0.0:4321/welcome.html&quot; title=&quot;Permalink to “Welcome”&quot;&gt;&lt;small&gt;◉ Permalink&lt;/small&gt;&lt;/a&gt;&lt;/p&gt;
         
       
         </content>
@@ -2117,7 +2117,7 @@ css: |
       <entry>
         <title>External Link Post</title>
         <id>http://0.0.0.0:4321/external-link-post.html</id>
-        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/external-link-post.html" />
+        <link rel="alternate" type="text/html" href="https://sparanoid.com/" />
         <published>2014-02-01T00:00:00-08:00</published>
 
         
@@ -2140,7 +2140,7 @@ css: |
           
           
         
-          &lt;p&gt;&lt;a href=&quot;https://sparanoid.com/&quot;&gt;&lt;small&gt;◉ Direct Link to Original Site&lt;/small&gt;&lt;/a&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;a href=&quot;http://0.0.0.0:4321/external-link-post.html&quot; title=&quot;Permalink to “External Link Post”&quot;&gt;&lt;small&gt;◉ Permalink&lt;/small&gt;&lt;/a&gt;&lt;/p&gt;
         
       
         </content>
