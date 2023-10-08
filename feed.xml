@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Karun Vinayagam</title>
   <subtitle>Karun - Software Engineer</subtitle>
-  <updated>2023-02-12T14:07:18-08:00</updated>
+  <updated>2023-10-08T13:17:07+00:00</updated>
   <id>http://0.0.0.0:4321/</id>
-  <generator uri="https://sparanoid.com/lab/amsf/" version="2.0.18">Almace Scaffolding</generator>
+  <generator uri="https://sparanoid.com/lab/amsf/" version="2.0.24">Almace Scaffolding</generator>
 
   <link rel="alternate" type="text/html" hreflang="en" href="http://0.0.0.0:4321/" />
   <link rel="self" type="application/atom+xml" href="http://0.0.0.0:4321/feed.xml" />
@@ -21,13 +21,117 @@
       
 
       <entry>
+        <title>My Running Journey So Far</title>
+        <id>http://0.0.0.0:4321/my-running-journey.html</id>
+        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/my-running-journey.html" />
+        <published>2023-10-02T00:00:00+00:00</published>
+
+        
+          <updated>2023-10-08T12:44:54+00:00</updated>
+        
+
+        <author>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
+        </author>
+
+        <content type="html" xml:base="http://0.0.0.0:4321/">
+          
+            &lt;p&gt;Theme Curtana has full &lt;a href=&quot;http://ogp.me/&quot;&gt;Open Graph&lt;/a&gt; and &lt;a href=&quot;https://dev.twitter.com/docs/cards&quot;&gt;Twitter Cards&lt;/a&gt; support.&lt;/p&gt;
+
+&lt;p&gt;It will look for the image in the following order:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.thumbnail&lt;/code&gt; if defined in your post &lt;a href=&quot;https://jekyllrb.com/docs/frontmatter/&quot;&gt;front-matter field&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;If no specified &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.thumbnail&lt;/code&gt; defined, it uses &lt;a href=&quot;/custom-heading-background.html&quot;&gt;Heading Background Image&lt;/a&gt; (aka. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.heading-bg&lt;/code&gt;) if defined in your post front-matter field.&lt;/li&gt;
+  &lt;li&gt;If no heading background image found, Curtana will try to grab the first image (wrapped inside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt;) in your post as your post thumbnail&lt;/li&gt;
+  &lt;li&gt;If nothing found, it fails back to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logo.png&lt;/code&gt; located at your site root.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;You can always use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.thumb_force_logo&lt;/code&gt; in your post front-matter field to override the above lookup.&lt;/p&gt;
+
+&lt;p&gt;Here’s a preview on Twitter:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/sparanoid/open-graph-preview.png&quot; alt=&quot;Twitter Cards (Open Graph compatible) Preview&quot; /&gt;&lt;/p&gt;
+
+          
+          
+        
+      
+        </content>
+
+        
+          <summary>Theme Curtana has full Open Graph and Twitter Cards support.</summary>
+        
+      </entry>
+    
+  
+    
+      
+
+      
+
+      <entry>
+        <title>East Yorkshire</title>
+        <id>http://0.0.0.0:4321/east-yorkshire.html</id>
+        <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/east-yorkshire.html" />
+        <published>2023-10-02T00:00:00+00:00</published>
+
+        
+          <updated>2023-10-08T12:44:54+00:00</updated>
+        
+
+        <author>
+          <name>Karun Kalaivanan Vinayagam</name>
+          <uri>http://vkarun.me/</uri>
+          <email>mail@vkarun.me</email>
+        </author>
+
+        <content type="html" xml:base="http://0.0.0.0:4321/">
+          
+            &lt;p&gt;Theme Curtana has full &lt;a href=&quot;http://ogp.me/&quot;&gt;Open Graph&lt;/a&gt; and &lt;a href=&quot;https://dev.twitter.com/docs/cards&quot;&gt;Twitter Cards&lt;/a&gt; support.&lt;/p&gt;
+
+&lt;p&gt;It will look for the image in the following order:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.thumbnail&lt;/code&gt; if defined in your post &lt;a href=&quot;https://jekyllrb.com/docs/frontmatter/&quot;&gt;front-matter field&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;If no specified &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.thumbnail&lt;/code&gt; defined, it uses &lt;a href=&quot;/custom-heading-background.html&quot;&gt;Heading Background Image&lt;/a&gt; (aka. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.heading-bg&lt;/code&gt;) if defined in your post front-matter field.&lt;/li&gt;
+  &lt;li&gt;If no heading background image found, Curtana will try to grab the first image (wrapped inside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt;) in your post as your post thumbnail&lt;/li&gt;
+  &lt;li&gt;If nothing found, it fails back to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logo.png&lt;/code&gt; located at your site root.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;You can always use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.thumb_force_logo&lt;/code&gt; in your post front-matter field to override the above lookup.&lt;/p&gt;
+
+&lt;p&gt;Here’s a preview on Twitter:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/sparanoid/open-graph-preview.png&quot; alt=&quot;Twitter Cards (Open Graph compatible) Preview&quot; /&gt;&lt;/p&gt;
+
+          
+          
+        
+      
+        </content>
+
+        
+          <summary>Theme Curtana has full Open Graph and Twitter Cards support.</summary>
+        
+      </entry>
+    
+  
+    
+      
+
+      
+
+      <entry>
         <title>Profiling Rails Applications With Flame Graphs</title>
         <id>http://0.0.0.0:4321/profiling-rails-applications-with-flame-graphs.html</id>
         <link rel="alternate" type="text/html" href="https://deliveroo.engineering/2022/11/21/profiling-rails-application-code-via-flame-graph.html" />
-        <published>2023-01-14T00:00:00-08:00</published>
+        <published>2023-01-14T00:00:00+00:00</published>
 
         
-          <updated>2023-02-12T03:02:46-08:00</updated>
+          <updated>2023-10-07T22:46:06+00:00</updated>
         
 
         <author>
@@ -63,10 +167,10 @@
         <title>Rolling deployments and fingerprintng</title>
         <id>http://0.0.0.0:4321/rolling-deployments-and-fingerprinting.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/rolling-deployments-and-fingerprinting.html" />
-        <published>2020-07-25T00:00:00-07:00</published>
+        <published>2020-07-25T00:00:00+00:00</published>
 
         
-          <updated>2023-02-12T03:02:46-08:00</updated>
+          <updated>2023-10-07T22:46:06+00:00</updated>
         
 
         <author>
@@ -162,10 +266,10 @@ common-819894348394.js
         <title>Welcome</title>
         <id>http://0.0.0.0:4321/welcome.html</id>
         <link rel="alternate" type="text/html" href="https://wordpress.org/plugins/slimpack/" />
-        <published>2019-12-04T00:00:00-08:00</published>
+        <published>2019-12-04T00:00:00+00:00</published>
 
         
-          <updated>2021-02-05T14:11:39-08:00</updated>
+          <updated>2023-10-07T22:46:06+00:00</updated>
         
 
         <author>
@@ -220,10 +324,10 @@ common-819894348394.js
         <title>Sidekiq Async Task</title>
         <id>http://0.0.0.0:4321/sidekiqasynctask.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/sidekiqasynctask.html" />
-        <published>2019-04-12T00:00:00-07:00</published>
+        <published>2019-04-12T00:00:00+00:00</published>
 
         
-          <updated>2020-07-24T16:28:22-07:00</updated>
+          <updated>2023-10-07T22:46:06+00:00</updated>
         
 
         <author>
@@ -332,10 +436,10 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
         <title>Open Graph</title>
         <id>http://0.0.0.0:4321/open-graph.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/open-graph.html" />
-        <published>2017-01-06T00:00:00-08:00</published>
+        <published>2017-01-06T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -384,10 +488,10 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
         <title>Introducing Curtana</title>
         <id>http://0.0.0.0:4321/theme-curtana.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/theme-curtana.html" />
-        <published>2016-06-01T00:00:00-07:00</published>
+        <published>2016-06-01T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -437,10 +541,10 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
         <title>KARRUN</title>
         <id>http://0.0.0.0:4321/getting-started.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/getting-started.html" />
-        <published>2014-06-12T00:00:00-07:00</published>
+        <published>2014-06-12T00:00:00+00:00</published>
 
         
-          <updated>2019-04-11T14:55:02-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -536,10 +640,10 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
         <title>Customizing Styles</title>
         <id>http://0.0.0.0:4321/customizing-styles.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/customizing-styles.html" />
-        <published>2014-06-11T00:00:00-07:00</published>
+        <published>2014-06-11T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -585,10 +689,10 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
         <title>Configuration</title>
         <id>http://0.0.0.0:4321/configuration.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/configuration.html" />
-        <published>2014-06-11T00:00:00-07:00</published>
+        <published>2014-06-11T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -639,10 +743,10 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
         <title>Themes</title>
         <id>http://0.0.0.0:4321/themes.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/themes.html" />
-        <published>2014-06-10T00:00:00-07:00</published>
+        <published>2014-06-10T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -727,10 +831,10 @@ This is a &lt;strong&gt;ruby gem&lt;/strong&gt; which gives your &lt;strong&gt;S
         <title>Creating Your Own Theme</title>
         <id>http://0.0.0.0:4321/creating-themes.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/creating-themes.html" />
-        <published>2014-06-09T00:00:00-07:00</published>
+        <published>2014-06-09T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -1084,10 +1188,10 @@ Reading time: 3 hrs 20 mins
         <title>Syntax Highlighting</title>
         <id>http://0.0.0.0:4321/syntax-highlighting.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/syntax-highlighting.html" />
-        <published>2014-06-06T00:00:00-07:00</published>
+        <published>2014-06-06T00:00:00+00:00</published>
 
         
-          <updated>2019-04-11T14:55:02-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -1106,7 +1210,7 @@ Reading time: 3 hrs 20 mins
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
   &quot;scripts&quot;: {
 &lt;span class=&quot;gd&quot;&gt;-   &quot;precommit&quot;: &quot;npm test&quot;,
 -   &quot;commitmsg&quot;: &quot;commitlint -E GIT_PARAMS&quot;
@@ -1117,7 +1221,7 @@ Reading time: 3 hrs 20 mins
 +     &quot;commit-msg&quot;: &quot;commitlint -E HUSKY_GIT_PARAMS&quot;
 +   }
 + }
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;/span&gt;}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
@@ -1415,10 +1519,10 @@ and &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&
         <title>Markdown Features Test</title>
         <id>http://0.0.0.0:4321/markdown-features-test.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/markdown-features-test.html" />
-        <published>2014-06-06T00:00:00-07:00</published>
+        <published>2014-06-06T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -1579,10 +1683,10 @@ end
         <title>Markup Example</title>
         <id>http://0.0.0.0:4321/markup-example.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/markup-example.html" />
-        <published>2014-06-05T00:00:00-07:00</published>
+        <published>2014-06-05T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -1852,10 +1956,10 @@ Careful Skippy, you really aren’t as convincing as you think you are.&lt;/p&gt
         <title>Custom HTML Markups</title>
         <id>http://0.0.0.0:4321/custom-html-markups.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/custom-html-markups.html" />
-        <published>2014-06-01T00:00:00-07:00</published>
+        <published>2014-06-01T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -2015,10 +2119,10 @@ Love this plugin? please consider &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
         <title>Custom Color Scheme</title>
         <id>http://0.0.0.0:4321/custom-color-scheme.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/custom-color-scheme.html" />
-        <published>2014-05-01T00:00:00-07:00</published>
+        <published>2014-05-01T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -2067,10 +2171,10 @@ scheme-hero-bg: &quot;#0029ff&quot;
         <title>Unique Post Styling via Custom CSS</title>
         <id>http://0.0.0.0:4321/custom-css.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/custom-css.html" />
-        <published>2014-04-01T00:00:00-07:00</published>
+        <published>2014-04-01T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -2118,10 +2222,10 @@ css: |
         <title>External Link Post</title>
         <id>http://0.0.0.0:4321/external-link-post.html</id>
         <link rel="alternate" type="text/html" href="https://sparanoid.com/" />
-        <published>2014-02-01T00:00:00-08:00</published>
+        <published>2014-02-01T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -2160,10 +2264,10 @@ css: |
         <title>Custom Heading Image</title>
         <id>http://0.0.0.0:4321/custom-heading-image.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/custom-heading-image.html" />
-        <published>2014-02-01T00:00:00-08:00</published>
+        <published>2014-02-01T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
@@ -2224,10 +2328,10 @@ css: |
         <title>Custom Heading Background</title>
         <id>http://0.0.0.0:4321/custom-heading-background.html</id>
         <link rel="alternate" type="text/html" href="http://0.0.0.0:4321/custom-heading-background.html" />
-        <published>2014-02-01T00:00:00-08:00</published>
+        <published>2014-02-01T00:00:00+00:00</published>
 
         
-          <updated>2019-04-09T12:23:53-07:00</updated>
+          <updated>2023-01-31T06:31:08+00:00</updated>
         
 
         <author>
